@@ -1,3 +1,3 @@
-Documentation and Syllabus for ISS 294L Interactive Graphics Critical Code
+Documentation and Syllabus for CMAC 564S - Physical Computing
 
-![Alt text](critical-code.png?raw=true "Optional Title")
+![Alt text](physical-computing.png?raw=true "Optional Title")
