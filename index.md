@@ -1,5 +1,5 @@
 ---
-title:  Physical Computing and the Internet of Things
+title:  Physical Computing and IoT
 ---
 
 
