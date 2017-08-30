@@ -64,15 +64,13 @@ If we `ls` again, we should see that the folder that we created is on the deskto
 
 We should now be able to run the `git`  command from terminal to ensure that it is installed correctly.
 
-`new` 
-
 From there, should now be able to start using GitHub. First we'll make a GitHub account
 
-<img src="{{ "/images/git/profile.png" | prepend: site.baseurl }}{{ img }}" alt="">
-
- And we'll make a new repository for our code
-
 <img src="{{ "/images/git/new-repo.png" | prepend: site.baseurl }}{{ img }}" alt="">
+
+ And we'll make a new repository for our code. I'm calling mine 'hello-world-tutorial'
+
+<img src="{{ "/images/git/hello-world.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
 
 
@@ -87,13 +85,20 @@ Next, we'll initialize our repository. We'll run `git init` to initalize our rep
 
 <img src="{{ "/images/git/git-init.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
+Lets run `git status` to see what files are going to be tracked by Git. We can see that I have two "untracked" files '.DS_Store' and the file that we previously created 'hello_world.md'. Don't worry if there isn't a '.DS_Store', you dont need it.
+
+<img src="{{ "/images/git/git-status.png" | prepend: site.baseurl }}{{ img }}" alt="">
+
 Next, we can really follow the commands per the GitHub page.
+
 
 We'll run `git add .` to add all of our files. The "." at the end just means "all". 
 
 Then we'll run `git commit -m "first commit"`. This gives our commit a message. your message can be anything, it doesn't have to be "first commit". In fact, its good practice to have your commit message reflect the work that you've done. This will help you navigate the change that you made without having to look to far into the code. If I add a variable to my code, my commit message should be something like `git commit -m "added a new variable"`
 
-Next, we'll have to add the origin to our repository, so that when we change file and save them, git will know where to store the code. We can run `git remote add origin https://github.com/matthewbaykenney/you-repository-name.git`
+<img src="{{ "/images/git/first-commit.png" | prepend: site.baseurl }}{{ img }}" alt="">
+
+Next, we'll have to add the "origin" to our repository, so that when we change file and save them, git will know where to store the code. We can run `git remote add origin https://github.com/matthewbaykenney/you-repository-name.git`
 
 Lastly, we'll have to "push" our code to github. "Push" really means just saving it or adding it to the repository. For git, we "push" code to GitHub, and "pull" code from GitHub. Let's run `git push -u origin master`. The "origin" command sets the origin of our repository, and the "master" command means the master branch. We'll get into branches later. For now we should see output like this:
 
@@ -113,7 +118,12 @@ We should be back in the Terminal inside the folder for our project. Lets open u
 
 Now we can run the commands again without any setup. It should be pretty smooth from here.
 
-From the command line, run `git status`. We should see in the output that git has recorded that one of our document has been modified. This is great! Version controll is as easy as changing our documents and saving them, like we would in any other application. 
+From the command line, run `git status`. We should see in the output that git has recorded that one of our document has been modified. 
+
+
+<img src="{{ "/images/git/status-modified.png" | prepend: site.baseurl }}{{ img }}" alt="">
+
+This is great! Version controll is as easy as changing our documents and saving them, like we would in any other application. 
 
 <img src="{{ "/images/git/hello-repo.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
@@ -132,6 +142,10 @@ Next we'll run `git push`  to "push" the new changes to our repository. Again th
 Now we should be able to go back to GitHub to see our changes. We can see that there are now two commits with our messages beside them.
 
 <img src="{{ "/images/git/repo-new.png" | prepend: site.baseurl }}{{ img }}" alt="">
+
+If we click on the 'hello_world.md' file, we should see the text that we added to our document
+
+<img src="{{ "/images/git/hello-new-repo.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
 Yayyyy!
 
