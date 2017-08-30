@@ -6,17 +6,17 @@ order: 1
 
 <img src="{{ "/images/git/github.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
-GitHub is a software service that lets users securly store and manage thier code. Since we'll be diving into this coding in this course, we'll be using it as our main data storage spot.
+GitHub is a software service that lets users securely store and manage their code. Since we'll be diving into this coding in this course, we'll be using it as our main data storage spot.
 
-Github is built on top of Git, a free and open source version control system. A version control system keeps tracks of every change in your code, allowing users to go back to previous versions, save or "push" new version of code, and create "branches" for trying out new ideas without overwriting old code. Version controll systems are used by every developers and are crucial to keeping sane, and allowing them to try new ideas without reprocusions. Code is saved in "repositories" that look like this:
+Github is built on top of Git, a free and open source version control system. A version control system keeps tracks of every change in your code, allowing users to go back to previous versions, save or "push" new version of code, and create "branches" for trying out new ideas without overwriting old code. Version control systems are used by every developers and are crucial to keeping sane, and allowing them to try new ideas without repercussions. Code is saved in "repositories" that look like this:
 
 <img src="{{ "/images/git/git-repo.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
 GitHub is a "hub" for developers Git repositories. It also serves as a social network, allowing users to store, share download, and collaborate on coding project. It is used by everyone from Facebook to NASA and is a standard place for developers to work on thier projects. 
 
-We'll be using GitHub to turn in assignments, keep track of progress, and share our code with eachother and the outside world.
+We'll be using GitHub to turn in assignments, keep track of progress, and share our code with each other and the outside world.
 
-To start using GitHub, we'll first have to get used to the command line. You can think of the command line like your computer, but without an interface. If we were to remove the desktop, all of the folders, and icons, and work only with text, thats is how the command line opporates. The command line can be used through a application called 'Terminal'. It can be found in your 'Applications' folder, under 'Utilities'
+To start using GitHub, we'll first have to get used to the command line. You can think of the command line like your computer, but without an interface. If we were to remove the desktop, all of the folders, and icons, and work only with text, that’s how the command line operates. The command line can be used through a application called 'Terminal'. It can be found in your 'Applications' folder, under 'Utilities'
 
 ```
 Applications
@@ -39,7 +39,7 @@ We can see that we are in the User directory of our computer. Lets try getting o
 
 We can see that we're now on our Desktop. Our terminal should show 'your-computer-name:Desktop user$'
 
-We can check that we're on the by running `ls` again. If we look at the output, it check it against the folder that our on our acutal desktop, we can see that they are the same. 
+We can check that we're on the by running `ls` again. If we look at the output, it check it against the folder that our on our actual desktop, we can see that they are the same. 
 
 <img src="{{ "/images/git/piboard.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
@@ -47,7 +47,7 @@ For practice, lets continue to try to move around our computer. We'll use `cd` t
 
 If you need to go back one folder, try `cd ..` to go back to your previous position.
 
-If you want to check to see were you are on your computer, you can always run `pwd` and ckeck the output. 
+If you want to check to see were you are on your computer, you can always run `pwd` and check the output. 
 
 We'll be using the command line a lot in this class, so its good to get used to running commands. We'll also be using it for GitHub to upload our projects.
 
@@ -66,7 +66,7 @@ We should now be able to run the `git`  command from terminal to ensure that it 
 
 `new` 
 
-From there, should now be able to start using github. First we'll make a GitHub account
+From there, should now be able to start using GitHub. First we'll make a GitHub account
 
 <img src="{{ "/images/git/profile.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
@@ -113,7 +113,7 @@ We should be back in the Terminal inside the folder for our project. Lets open u
 
 Now we can run the commands again without any setup. It should be pretty smooth from here.
 
-From the command line, run `git status`. We should see in the output that git has recored that one of our document has been modified. This is great! Version controll is as easy as changing our documents and saving them, like we would in any other application. 
+From the command line, run `git status`. We should see in the output that git has recorded that one of our document has been modified. This is great! Version controll is as easy as changing our documents and saving them, like we would in any other application. 
 
 <img src="{{ "/images/git/hello-repo.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
@@ -125,7 +125,7 @@ Then run `git commit -m "changed the document"` to give the document a commit me
 
 <img src="{{ "/images/git/new-commit.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
-Next we'll run `git push`  to "push" the new changes to our repositor. Again the output should look like this
+Next we'll run `git push`  to "push" the new changes to our repository. Again the output should look like this
 
 <img src="{{ "/images/git/push-new.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
@@ -134,6 +134,7 @@ Now we should be able to go back to GitHub to see our changes. We can see that t
 <img src="{{ "/images/git/repo-new.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
 Yayyyy!
+
 
 
 
