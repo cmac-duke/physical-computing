@@ -1,7 +1,7 @@
 # ----
 # Site
 
-title: CMAC 564S - Physical Computing
+title: Physical Computing and the Internet of Things
 url: "http://yourdomain.com"
 baseurl:
 google_analytics_key:
@@ -9,8 +9,8 @@ show_full_navigation: true
 
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: /siteicon.png
-description: "CMAC 564S - Physical Computing"
-author: 
+description: "Physical Computing and the Internet of Things"
+author:
   name:
   email:
   twitter: # twitter username without the @ symbol
