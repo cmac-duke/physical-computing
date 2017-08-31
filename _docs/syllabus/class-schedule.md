@@ -5,6 +5,10 @@ order: 2
 ---
 Schedule is subject to change at instructors' discretion.  Check back frequently for updates.
 
+## Schedule coming soon!
+
+<!--
+
 ### Thursday, August 31
 
 
@@ -51,3 +55,5 @@ Time:  7:00 - 10:00 PM
 Location:  TBD
 
 *Note:  Date to be confirmed. This is our scheduled final exam day and time.*
+
+-->

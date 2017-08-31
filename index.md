@@ -16,7 +16,7 @@ Over the course of our semester together we will:
 * Learn Internet of Things fundamentals:  Arduino and Python programming, cloud communication protocols, circuit design, and physical prototyping
 * Experiment with the artistic possibilities of networked micro-controllers and sensors.
 * Discuss and debate the social, economic, and political implications of emerging technologies.
-* Creatively engage issues and concepts through physical prototypes: ubiquitous dataveillance, medial materiality, e-waste and environmental impacts, posthuman / nonhuman phenomenologies, securitization and risk.  
+* Creatively engage issues and concepts through physical prototypes: ubiquitous dataveillance, medial materiality, e-waste and environmental impacts, machine intelligence, posthuman / nonhuman phenomenologies, securitization and risk.  
 
 No prerequisites beyond a willingness to work hard, collaborate, learn, tinker, and play.
 
