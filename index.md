@@ -23,13 +23,6 @@ No prerequisites beyond a willingness to work hard, collaborate, learn, tinker, 
 
 ## Instructors
 
-**Mark Olson**   
-mark.olson@duke.edu   
-(919) 613-6726   
-A262A Smith Warehouse, Bay 10   
-Office Hours:  By Appointment
-
-**Matthew Kenney**   
-matthew.kenney@duke.edu   
-A243 Smith Warehouse, Bay 11   
-Office Hours:  TBD
+[Mark Olson](https://aahvs.duke.edu/people/profile/mark-olson) | [Matthew Kenney](https://aahvs.duke.edu/people/profile/matthew-kenney)
+----- | -----
+mark.olson@duke.edu<br>A262A Smith Warehouse, Bay 10<br />Office Hours:  By Appointment  | matthew.kenney@duke.edu<br />A243 Smith Warehouse, Bay 11<br />Office Hours:  TBD
