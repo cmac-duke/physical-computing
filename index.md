@@ -1,9 +1,8 @@
-<!-- this `title:` appears on homepage and below search in lefthand menu -->
 ---
 title:  Physical Computing and the Internet of Things
 ---
-Fall 2017
-Thursdays
+Fall 2017<br />
+Thursdays<br />
 10:00 AM - 1:00 PM
 
 ## About
@@ -32,5 +31,5 @@ Office Hours:  By Appointment
 
 **Matthew Kenney**
 matthew.kenney@duke.edu
-A243 Smith Warehouse, Bay 11
+A243 Smith Warehouse, Bay 11 
 Office Hours:  TBD
