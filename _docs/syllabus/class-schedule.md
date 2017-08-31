@@ -12,7 +12,7 @@ Schedule is subject to change at instructors' discretion.  Check back frequently
 
 
 ### Thursday, September 14
-
+***Important***:  This class session will meet at the [Innovation Co-Lab Studio](https://colab.duke.edu/studio) on West Campus.
 
 ### Thursday, September 21
 
