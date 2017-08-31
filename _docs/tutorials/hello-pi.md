@@ -1,5 +1,5 @@
 ---
-title: Getting Started With Raspberry Pi Zero
+title: Getting Started w/ Raspberry Pi Zero
 category: Tutorials
 order: 2
 
