@@ -1,6 +1,6 @@
 ---
 title: Intro to GitHub
-category: Tutorial
+category: Tutorials
 order: 1
 ---
 

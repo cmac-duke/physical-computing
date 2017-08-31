@@ -1,5 +1,5 @@
 ---
-title: Class Syllabus
+title: Requirements
 category: Syllabus
 order: 1
 ---
