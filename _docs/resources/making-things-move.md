@@ -1,5 +1,5 @@
 ---
-title: Making Things Move
+title: Making Things Move: Actuators
 category: Resources
 order:
 ---
