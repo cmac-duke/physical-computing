@@ -25,7 +25,6 @@ social:
 permalink: pretty
 
 gems:
-  - jekyll-last-modified-at
 
 exclude:
   - Gemfile
