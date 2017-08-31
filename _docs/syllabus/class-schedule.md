@@ -5,6 +5,8 @@ order: 2
 ---
 Schedule is subject to change at instructors' discretion.  Check back frequently for updates.
 
+Last modified: {{ page.last_modified_at | date: '%Y:%B:%A:%d:%S:%R' }}
+
 ## Thursday, August 31
 
 
@@ -47,7 +49,7 @@ Schedule is subject to change at instructors' discretion.  Check back frequently
 
 ## Thursday, November 30
 
-***
+
 
 ### Sunday, December 17 - Final Exhibition   
 Time:  7:00 - 10:00 PM   
