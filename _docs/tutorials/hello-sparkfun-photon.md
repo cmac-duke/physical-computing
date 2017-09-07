@@ -51,11 +51,13 @@ In your terminal, run `particle serial mac` to get the photon’s mac address (m
 
 ### Step 5: Register Your Device to DukeOpen
 
-Register your photon at https://dukereg.duke.edu/. (You will need to login with your NetId).
+Register your Photon's mac address at [DukeReg](https://dukereg.duke.edu/). (You will need to login with your NetId).   If you encounter issues in Firefox with the page loading, you may need to clear your browser's cookies and cache.
+
+Be sure to give the device a clear description (e.g. "Photon Redboard 1") and to register the device type as `IoT Device`
 
 ### Step 6: Claim and Set up Your Photon
 
-In your terminal, run `particle setup` and then CAREFULLY follow the instructions on the screen. You may need to press the SETUP button of your Photon at the beginning so your computer can recognize it. When selecting Wi-Fi options, be sure to use DukeOpen and choose none for security settings. Be sure to give your Photon a name that you'll remember easily. You’ll know it’s connected when its on-board RGB LED is "breathing" blue.
+In your terminal, run `particle setup` and then CAREFULLY follow the instructions on the screen. You may need to press the SETUP button of your Photon at the beginning so your computer can recognize it. When selecting Wi-Fi options, be sure to use DukeOpen and choose none for security settings. Be sure to give your Photon a name that you'll remember easily. You’ll know it’s connected when its on-board RGB LED is "breathing" blue (cyan).
 
 ## Part II: Deploy your Code to Photon
 
