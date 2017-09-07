@@ -43,7 +43,7 @@ After you have an account, open your terminal/command line and type `$ particle 
 
 ### Step 3: Connect your photon using the USB
 
-Connect your particle device to your computer.
+Connect your particle device to your computer.   The device's onboard RGB LED will blink *blue*.
 
 ### Step 4: Get the Mac Address of Your Photon
 
@@ -57,7 +57,7 @@ Be sure to give the device a clear description (e.g. "Photon Redboard 1") and to
 
 ### Step 6: Claim and Set up Your Photon
 
-In your terminal, run `particle setup` and then CAREFULLY follow the instructions on the screen. You may need to press the SETUP button of your Photon at the beginning so your computer can recognize it. When selecting Wi-Fi options, be sure to use DukeOpen and choose "none" or "unsecured" for security settings. Be sure to give your Photon a name that you'll remember easily. You’ll know it’s connected when its on-board RGB LED is "breathing" blue (cyan).
+In your terminal, run `particle setup` and then CAREFULLY follow the instructions on the screen. You may need to press the SETUP button of your Photon at the beginning so your computer can recognize it. When selecting Wi-Fi options, be sure to use DukeOpen and choose "none" or "unsecured" for security settings. Be sure to give your Photon a name that you'll remember easily. You’ll know it’s connected when its on-board RGB LED is "breathing" cyan.
 
 #### Troubleshooting
 
@@ -66,7 +66,23 @@ There is a strong likelihood that your attempt to run `particle setup` will fail
 ```
 particle serial wifi
 ```
-When prompted, choose or enter "DukeOpen" and choose "Unsecured" for security type.  Your Photon should restart.  If it does not, press the "Reset" button
+When prompted, choose or enter "DukeOpen" and choose "Unsecured" for security type.  Your Photon should restart.  If it does not, press the "Reset" button on your Photon Redboard.
+
+To claim your Photon (e.g. add it to your Particle account), enter:
+```
+particle serial identify
+```
+and copy the deviceID that the command returns.
+
+Then, add the device to your account using:
+```
+particle device add <deviceID>
+```
+
+Finally, give your device a human-readable name by using the following command:
+```
+particle device rename <deviceID> "SomeGreatName"
+```
 
 ## Part II: Deploy your Code to Photon
 
