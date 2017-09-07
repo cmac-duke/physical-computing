@@ -1,7 +1,7 @@
 ---
 title: Getting Started w/ Sparkfun Photon
 category: Tutorials
-order: 3
+order: 2
 
 ---
 
