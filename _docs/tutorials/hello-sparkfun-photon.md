@@ -57,7 +57,16 @@ Be sure to give the device a clear description (e.g. "Photon Redboard 1") and to
 
 ### Step 6: Claim and Set up Your Photon
 
-In your terminal, run `particle setup` and then CAREFULLY follow the instructions on the screen. You may need to press the SETUP button of your Photon at the beginning so your computer can recognize it. When selecting Wi-Fi options, be sure to use DukeOpen and choose none for security settings. Be sure to give your Photon a name that you'll remember easily. You’ll know it’s connected when its on-board RGB LED is "breathing" blue (cyan).
+In your terminal, run `particle setup` and then CAREFULLY follow the instructions on the screen. You may need to press the SETUP button of your Photon at the beginning so your computer can recognize it. When selecting Wi-Fi options, be sure to use DukeOpen and choose "none" or "unsecured" for security settings. Be sure to give your Photon a name that you'll remember easily. You’ll know it’s connected when its on-board RGB LED is "breathing" blue (cyan).
+
+#### Troubleshooting
+
+There is a strong likelihood that your attempt to run `particle setup` will fail.  There are known issues trying to connect Photons to enterprise wifi networks like DukeOpen.  If you encounter these issues, try:
+
+```
+particle serial wifi
+```
+When prompted, choose or enter "DukeOpen" and choose "Unsecured" for security type.  Your Photon should restart.  If it does not, press the "Reset" button
 
 ## Part II: Deploy your Code to Photon
 
@@ -90,7 +99,7 @@ int led = D7;
 Skip a line, and then use the `setup()` function to set the led pin to function as an OUTPUT:
 ```
 void setup(){
-    pinmode(led, OUTPUT);
+    pinMode(led, OUTPUT);
 }
 ```
 
