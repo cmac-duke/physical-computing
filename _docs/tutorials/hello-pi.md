@@ -5,7 +5,7 @@ order: 2
 
 ---
 
-<img src="{{ "/images/piboard.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
+<img src="{{ "/images/hello_pi/piboard.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
 The Raspberry Pi Zero W is a cheap, light weight microcontroller developed by the Raspberry Pi Foundation. It was developed as a cheaper, smaller alternative to the original Raspberry Pi (now in version 3), and offers a similar interface and design. We'll be working with the Raspberry Pi throughout this semester and will be developing a software and hardware to interface with it. Before we dive too far into specifics, its important to get your Pi up and running, and configured correctly.
 
@@ -21,7 +21,7 @@ In your package, you should have received:
  - 2x20 Male header strip
 
 
-<img src="{{ "/images/pizero.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
+<img src="{{ "/images/hello_pi/pizero.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
 We'll first look at the micro SD card. This should have NOOBs installed on it already.
 
@@ -39,7 +39,7 @@ To start the pi, load the microSD card into the slot at the end of the board. Pl
 
 You should see a black screen with white text initalizing the OS in the upper left.
 
-<img src="{{ "/images/pi-booting.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
+<img src="{{ "/images/hello_pi/pi-booting.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
 
 ## Loading the OS
@@ -48,7 +48,7 @@ After loading you should see a screen with options for the operating system (the
 
 After the OS is loaded, you should be taken to the desktop.  If you've used or seen Ubuntu before, things should lok familiar. If not, take a second to navigate around the menus.
 
-<img src="{{ "/images/rasbian.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
+<img src="{{ "/images/hello_pi/rasbian.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
 ## Changing the settings
 
@@ -56,7 +56,7 @@ Off the bat, there are some initial settings that we will need to change. First,
 
 Go to the menu in the upper right. From the dropdown, select 'Preferances' and then 'Keyboard and Mouse'. Change the keyboard to American.
 
-<img src="{{ "/images/settings.png" | prepend: site.baseurl }}{{ img }}" alt="">
+<img src="{{ "/images/hello_pi/settings.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
 ## Starting Wifi
 
@@ -70,7 +70,7 @@ Next, well have to install several packages onto the OS to be able to interact w
 
 Go to the menu in the upper left, click the dropdown and open Terminal. Terminal is an application that allows us to work with our computer without an interface. We can navigate our computer, install packages, and start scripts without having to go to websites or click around with the mouse. Well dive into terminal in depth in later courses. For now, we'll use some simple commands to install the packages we need. You should see your cursor blinking next 'your-computer-name'$.
 
-<img src="{{ "/images/terminal.png" | prepend: site.baseurl }}{{ img }}" alt="">
+<img src="{{ "/images/hello_pi/terminal.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
 Type:
 
@@ -104,7 +104,7 @@ To check that package is present, type
 GPIO.RPI_REVISION
 ```
 
-<img src="{{ "/images/checkgpio.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
+<img src="{{ "/images/hello_pi/checkgpio.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
 
 
