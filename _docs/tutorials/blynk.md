@@ -24,4 +24,24 @@ In this tutorial, we will use [Blynk](http://www.blynk.cc/).
 
 <img src="{{ "/images/blynk/blynk.jpg" | prepend: site.baseurl }}{{ img }}" alt="Blynk Logo">
 
-## Part I -
+## What is Blynk?
+
+Blynk is an IoT platform with iOS and Android apps that enables users to control Photons, Arduino, Raspberry Pi and similar devices over the Internet.
+
+It is comprised of three components:
+1.  **Blynk App** - mobile applications that allow you to interface with your IoT devices.
+2.  **Blynk Server** - an open source cloud-based server that brokers communication between the smartphone running the Blynk App and the IoT device(s).
+3.  **Blynk Libraries** - that run on the IoT device, sending data from the device to the Blynk Server and receiving commands from the Blynk App, relayed through the Blynk Server.
+
+
+## Part I - The Blynk App
+
+1. If you haven't already, you will need to download and install the Blynk App:
+<a href="https://itunes.apple.com/us/app/blynk-control-arduino-raspberry/id808760481?ls=1&amp;mt=8"><img src="http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg" alt="Drawing" style=" width: 170px; height:60px"></a> <a href="https://play.google.com/store/apps/details?id=cc.blynk"><img src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" alt="Drawing" style=" width: 158px; height:42px"></a>
+
+2. Launch the Blynk App and Create a Blynk Account   
+After you download the Blynk App and open it, you’ll need to create a New Blynk account. (Note: This account is separate from the accounts used for the Blynk Forums, in case you already have one.)   
+<img src="{{ "/images/blynk/create_account.png" | prepend: site.baseurl }}{{ img }}" alt="Blynk Home Screen" >   
+Blynk recommends using a real email address "because it will simplify things later" -- in particular, you will be able to reset your password as well as receive application auth tokens by email that you can cut-and-paste into the Particle online IDE.
+
+3. 
