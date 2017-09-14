@@ -70,13 +70,33 @@ The Blynk App contains an impressive range of pre-built widgets that you can use
 <img src="{{ "/images/blynk/widgets.png" | prepend: site.baseurl }}{{ img }}" alt="Widgets" >  
  Note that you have a "Energy Balance" of 2,000 credits, and that each widget "costs" a finite amount of credits.  You can purchase additional credits by purchasing energy packs by pressing the "Add" button.  As we prototype, however, we can make do with our base allocation and "recycle" credits back to our Energy Balance when we're done with this project.
 
- Let's build our interface!
-
-In this case, we want to create a display for the temperature (in degrees Fahrenheit), the % humidity, and a gauge for the light levels, as illustrated below:
+In this tutorial, we want to create a display for the temperature (in degrees Fahrenheit), the % humidity, and a gauge for the light levels, as illustrated below:
 <img src="{{ "/images/blynk/example_app.png" | prepend: site.baseurl }}{{ img }}" alt="Example App" >  
+
+### Let's build our interface!
 
 At the completion of Part I, you should be looking at a blank Blynk App canvas:
 <img src="{{ "/images/blynk/blank_canvas.png" | prepend: site.baseurl }}{{ img }}" alt="A Blank Blynk App Canvas" >  
+
+1.  Let's begin by adding a widget to the canvas.  Click on the &#8853; icon at the top of the canvas to pull up the widget list.
+
+2.  Scroll down until you see the "Labeled Value" widget and press it to add it to the interface.
+
+3. Tap on it to access its settings screen:
+
+    * Where it says "Labeled", change the text to "Temp".
+    * You can change the text color by clicking on the red teardrop.
+    * Under Input, we're going to send our data from the Photon to a "Virtual Pin" so click on the "PIN" button and choose Virtual V0 and then click "Continue."
+    * We then need to set the range of expected data.  Since we can reasonably assume that ambient air temperature will range from -20 to 130 degrees, you can enter these values for MIN and MAX.
+    * Under Label, you will use the following syntax: `Temp: /pin.#/ °F` to specify the degrees with a resolution of .1 degree (e.g. `Temp: 45.3 °F`)
+    * Finally, for Reading Rate, choose "PUSH" (e.g. we want the data to update whenever the Photon "pushes" the data to the cloud.)  
+4. Press the back arrow to return to your canvas.  Your canvas should now have a single element, a Temp field as illustrated below.
+
+5.  Click on the &#8853; icon at the top of the canvas to create a second widget.  Note that your Energy Balance has been reduced by 400 credits, the "cost" of a Labeled Value widget.
+
+6.  Add a second "Labeled Value" widget for the % Humidity to your interface.  Assign it to Virtual Pin 1 (V1) with a display syntax of `Humidity: /pin./ %`.  It can also be set to use PUSH for a Reading Rate.
+
+6.  Finally, we'll add a Gauge widget 
 
 ## Part III:  Modify your Code
 
