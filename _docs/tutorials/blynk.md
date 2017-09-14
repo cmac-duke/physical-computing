@@ -78,25 +78,42 @@ In this tutorial, we want to create a display for the temperature (in degrees Fa
 At the completion of Part I, you should be looking at a blank Blynk App canvas:
 <img src="{{ "/images/blynk/blank_canvas.png" | prepend: site.baseurl }}{{ img }}" alt="A Blank Blynk App Canvas" >  
 
-1.  Let's begin by adding a widget to the canvas.  Click on the &#8853; icon at the top of the canvas to pull up the widget list.
+1.  Let's begin by adding a widget to the canvas.  Click on the &#8853; icon at the top of the canvas to pull up the widget list.   
+<img src="{{ "/images/blynk/widgets.png" | prepend: site.baseurl }}{{ img }}" alt="Widgets" >  
 
-2.  Scroll down until you see the "Labeled Value" widget and press it to add it to the interface.
+2.  Scroll down until you see the "Labeled Value" widget and tap it to add it to the interface.   
+<img src="{{ "/images/blynk/label_added.png" | prepend: site.baseurl }}{{ img }}" alt="Label Value Added to Interface" >  
 
-3. Tap on it to access its settings screen:
+3. Tap on the newly added "Labeled" field on the canvas to access its settings screen:   
+<img src="{{ "/images/blynk/labeled_value.png" | prepend: site.baseurl }}{{ img }}" alt="Labeled Value Settings Page" >  
 
     * Where it says "Labeled", change the text to "Temp".
     * You can change the text color by clicking on the red teardrop.
     * Under Input, we're going to send our data from the Photon to a "Virtual Pin" so click on the "PIN" button and choose Virtual V0 and then click "Continue."
     * We then need to set the range of expected data.  Since we can reasonably assume that ambient air temperature will range from -20 to 130 degrees, you can enter these values for MIN and MAX.
-    * Under Label, you will use the following syntax: `Temp: /pin.#/ °F` to specify the degrees with a resolution of .1 degree (e.g. `Temp: 45.3 °F`)
+    * Under Label, you will use the following syntax: `Temp: /pin.#/ °F` to specify the degrees with a resolution of .1 degree (e.g. `Temp: 45.3 °F`).  See [Labeled Value Formatting Options](http://docs.blynk.cc/#widgets-displays-labeled-value) for more information.
     * Finally, for Reading Rate, choose "PUSH" (e.g. we want the data to update whenever the Photon "pushes" the data to the cloud.)  
-4. Press the back arrow to return to your canvas.  Your canvas should now have a single element, a Temp field as illustrated below.
 
-5.  Click on the &#8853; icon at the top of the canvas to create a second widget.  Note that your Energy Balance has been reduced by 400 credits, the "cost" of a Labeled Value widget.
+   The results should look like this:   
+<img src="{{ "/images/blynk/labeled_value_temp.png" | prepend: site.baseurl }}{{ img }}" alt="Temp Widget Settings" >  
 
-6.  Add a second "Labeled Value" widget for the % Humidity to your interface.  Assign it to Virtual Pin 1 (V1) with a display syntax of `Humidity: /pin./ %`.  It can also be set to use PUSH for a Reading Rate.
+4. Press the back arrow to return to your canvas.  Your canvas should now have a single element, a Temp field as illustrated below.   
+<img src="{{ "/images/blynk/canvas_temp_only.png" | prepend: site.baseurl }}{{ img }}" alt="Canvas with Temp Value widget" >  
 
-6.  Finally, we'll add a Gauge widget 
+5.  Click on the &#8853; icon again at the top of the canvas to create a second widget.  Note that your Energy Balance has been reduced by 400 credits, the "cost" of a Labeled Value widget.
+
+6.  Add a second "Labeled Value" widget for the % Humidity to your interface.  Assign it to Virtual Pin 1 (V1) with a display syntax of `Humidity: /pin./ %`.  It can also be set to use PUSH for a Reading Rate.   
+<img src="{{ "/images/blynk/labeled_value_humidity.png" | prepend: site.baseurl }}{{ img }}" alt="Humidity Widget Settings" >  
+
+6.  Finally, add a Gauge widget to the application canvas.   
+<img src="{{ "/images/blynk/light_level.png" | prepend: site.baseurl }}{{ img }}" alt="Light Level Gauge Settings" >
+
+
+You can adjust the position and size of your widgets by pressing and holding on them.  Drag to reposition and use the handles to resize.   
+<img src="{{ "/images/blynk/example_app_before_data.png" | prepend: site.baseurl }}{{ img }}" alt="Resized and Repositioned" >
+
+You are now ready to make the modifications to your Photon's Arduino code to connect to the Blynk App and Server.
+
 
 ## Part III:  Modify your Code
 
