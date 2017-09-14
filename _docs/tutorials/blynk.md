@@ -29,19 +29,86 @@ In this tutorial, we will use [Blynk](http://www.blynk.cc/).
 Blynk is an IoT platform with iOS and Android apps that enables users to control Photons, Arduino, Raspberry Pi and similar devices over the Internet.
 
 It is comprised of three components:
-1.  **Blynk App** - mobile applications that allow you to interface with your IoT devices.
-2.  **Blynk Server** - an open source cloud-based server that brokers communication between the smartphone running the Blynk App and the IoT device(s).
+1.  **Blynk App** - mobile applications that allow you to interface with your IoT devices.   
+
+2.  **Blynk Server** - an open source cloud-based server that brokers communication between the smartphone running the Blynk App and the IoT device(s).  
+
 3.  **Blynk Libraries** - that run on the IoT device, sending data from the device to the Blynk Server and receiving commands from the Blynk App, relayed through the Blynk Server.
 
 
 ## Part I - The Blynk App
 
 1. If you haven't already, you will need to download and install the Blynk App:
-<a href="https://itunes.apple.com/us/app/blynk-control-arduino-raspberry/id808760481?ls=1&amp;mt=8"><img src="http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg" alt="Drawing" style=" width: 170px; height:60px"></a> <a href="https://play.google.com/store/apps/details?id=cc.blynk"><img src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" alt="Drawing" style=" width: 158px; height:42px"></a>
+<a href="https://itunes.apple.com/us/app/blynk-control-arduino-raspberry/id808760481?ls=1&amp;mt=8"><img src="http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg" alt="Drawing" style=" width: 170px; height:60px"></a> <a href="https://play.google.com/store/apps/details?id=cc.blynk"><img src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" alt="Drawing" style=" width: 158px; height:42px"></a>   
 
 2. Launch the Blynk App and Create a Blynk Account   
 After you download the Blynk App and open it, you’ll need to create a New Blynk account. (Note: This account is separate from the accounts used for the Blynk Forums, in case you already have one.)   
 <img src="{{ "/images/blynk/create_account.png" | prepend: site.baseurl }}{{ img }}" alt="Blynk Home Screen" >   
-Blynk recommends using a real email address "because it will simplify things later" -- in particular, you will be able to reset your password as well as receive application auth tokens by email that you can cut-and-paste into the Particle online IDE.
 
-3. 
+   Blynk recommends using a real email address "because it will simplify things later" -- in particular, you will be able to reset your password as well as receive application auth tokens by email that you can cut-and-paste into the Particle online IDE.
+
+3. After you create your account, you will be able to create a **+ New Project**:   
+<img src="{{ "/images/blynk/new_project.png" | prepend: site.baseurl }}{{ img }}" alt="+ New Project" >   
+
+4.  Give your project a name (e.g. "Enviro-Monitor").   
+
+5.  Under "Choose Device", scroll until you find "Sparkfun Photon Redboard":   
+<img src="{{ "/images/blynk/choose_device.png" | prepend: site.baseurl }}{{ img }}" alt="Choose Device" >   
+and then press "Continue."
+
+6.  Leave the Connection Type as "WIFI" (but note that you use several other protocols depending on your device's capabilities).
+
+7.  Press the "Create" button.  This will cause the Blynk App to send you an email with your Auth Token.  Check your email to verify that it has been sent.   
+
+   An Auth Token is a unique identifier which is needed to connect your hardware to your smartphone. Every new project you create will have its own Auth Token. You’ll get an Auth Token automatically on your email after project creation. You can also copy it manually.
+
+
+
+## Part II:  Add Widgets to your Blynk App Project
+
+The Blynk App contains an impressive range of pre-built widgets that you can use to represent data sent from your IoT device and/or control your IoT device.  For example, you may want to add a button to the graphical user interface that turns on an LED or trips a relay switch.   
+<img src="{{ "/images/blynk/widgets.png" | prepend: site.baseurl }}{{ img }}" alt="Widgets" >  
+ Note that you have a "Energy Balance" of 2,000 credits, and that each widget "costs" a finite amount of credits.  You can purchase additional credits by purchasing energy packs by pressing the "Add" button.  As we prototype, however, we can make do with our base allocation and "recycle" credits back to our Energy Balance when we're done with this project.
+
+ Let's build our interface!
+
+In this case, we want to create a display for the temperature (in degrees Fahrenheit), the % humidity, and a gauge for the light levels, as illustrated below:
+<img src="{{ "/images/blynk/example_app.png" | prepend: site.baseurl }}{{ img }}" alt="Example App" >  
+
+At the completion of Part I, you should be looking at a blank Blynk App canvas:
+<img src="{{ "/images/blynk/blank_canvas.png" | prepend: site.baseurl }}{{ img }}" alt="A Blank Blynk App Canvas" >  
+
+## Part III:  Modify your Code
+
+Recall that the code from [Experiment 6](https://learn.sparkfun.com/tutorials/sparkfun-inventors-kit-for-photon-experiment-guide/experiment-6-environment-monitor) took temperature and humidity readings from the RTH03 sensor and light readings from the photocell every 1.5 seconds.  The onboard LED (attached to pin D7) would blink every time a reading was taken from the sensors.
+
+In this exercise, we will modify the code so that instead of simply writing the data to serial, the Photon will send the data to the Blynk Server.
+
+1.  Go into the [Particle online IDE](https://build.particle.io) and find the Particle app that you created when you completed Part I of Exercise 6.   
+
+2.  Select all of the code in that app and then create a new app called "EnvironmentalLoggerBlynk", pasting the code into the new app.   
+
+3.  Go to the Libraries section of the online IDE and search for "blynk".
+
+4.  Click on it and then choose the blue "Include in Project" button.  
+
+5.  Under "Which App?", select the project that you just created and click "Confirm".   
+   This will add a new line to the top of your code:
+```c++
+#include <blynk.h>
+```   
+This tells the Particle IDE to bundle the Blynk libraries with your code when it compiles it and flashes it to your Photon.  
+
+   Note:  *If you get compile errors on Verify that relate to the RTH03 sensor library, you may need to re-add that library to this new project.*
+
+6.  Find your Auth Token from Part I, &#35;7 and add it to the declarations above the `void setup()` function:   
+```c++
+char auth[] = "YourAuthToken";
+```
+
+7.  Inside the `void setup()` function, add:
+```c++
+Blynk.begin(auth); // initiate Blynk library
+```
+
+8.  
