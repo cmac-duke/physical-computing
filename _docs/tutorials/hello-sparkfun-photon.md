@@ -11,11 +11,11 @@ order: 2
 
 ### Step 1: Install Particle CLI:
 
-If you are a Windows user:
+#### If you are a Windows user:
 
 You need to download [Particle Windows Installer](https://binaries.particle.io/cli/installer/windows/ParticleCLISetup.exe). This installer can install everything you need automatically, including node.js, the particle-cli, and dfu-util.
 
-If you are a Mac/Linux user:
+#### If you are a Mac/Linux user:
 
 First, you need to download [Node.js](https://nodejs.org/en/download/).
 
@@ -25,9 +25,9 @@ Install Node.js
 
 <img src="{{ "/images/hello_photon/node-install.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
-Open your terminal, and type
+Open your terminal.  At the `$` prompt, type:
 
-`$ npm install -g particle-cli`
+`npm install -g particle-cli`
 
 This command will install Particle CLI to your computer. You may see some errors along the way, but if everything works, you should see an output similar to this:
 
@@ -39,50 +39,63 @@ If you haven't created a Particle account, [click here to create a new account](
 
 <img src="{{ "/images/hello_photon/particleweb.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
-After you have an account, open your terminal/command line and type `$ particle login`, then follow the instructions to log in to your Particle account.
+After you have an account, return to your terminal/command line.  At the `$` prompt, type `particle login`, then follow the instructions to log in to your Particle account.
 
-### Step 3: Connect your photon using the USB
+### Step 3: Connect your Photon using the USB
 
-Connect your particle device to your computer.   The device's onboard RGB LED will blink *blue*.
+Connect your Particle device to your computer using the USB cable included in your kit.
+
+After the device powers on, its onboard RGB LED should blink *blue* to indicate that the Photon is in "Listening Mode".  If your Photon is not in Listening Mode, press and hold the Mode button for 3 seconds until the onboard RGB LED blinks blue.
+
+[This page](https://docs.particle.io/guide/getting-started/modes/photon/) provides information to help you interpret the different colors and blink sequences and their associated device modes.
 
 ### Step 4: Get the Mac Address of Your Photon
 
-In your terminal, run `particle serial mac` to get the photon’s mac address (must be in green listening mode)
+In your terminal, run `particle serial mac` to get the Photon’s mac address.  
 
 ### Step 5: Register Your Device to DukeOpen
 
 Register your Photon's mac address at [DukeReg](https://dukereg.duke.edu/). (You will need to login with your NetId).   If you encounter issues in Firefox with the page loading, you may need to clear your browser's cookies and cache.
 
-Be sure to give the device a clear description (e.g. "Photon Redboard 1") and to register the device type as `IoT Device`
+Be sure to give the device a clear description (e.g. "Photon Redboard 1") and to register the device type as *IoT Device*.
 
 ### Step 6: Claim and Set up Your Photon
 
-In your terminal, run `particle setup` and then CAREFULLY follow the instructions on the screen. You may need to press the SETUP button of your Photon at the beginning so your computer can recognize it. When selecting Wi-Fi options, be sure to use DukeOpen and choose "none" or "unsecured" for security settings. Be sure to give your Photon a name that you'll remember easily. You’ll know it’s connected when its on-board RGB LED is "breathing" cyan.
+In your terminal, run `particle setup` and then CAREFULLY follow the instructions on the screen. You may need to press the MODE button of your Photon to put the device in Listening Mode again so your computer can recognize it.
+
+When selecting Wi-Fi options, be sure to use DukeOpen and choose "none" or "unsecured" for security settings. Be sure to give your Photon a name that you'll remember easily.
+
+You’ll know it’s connected when its on-board RGB LED goes from blinking green to "breathing" cyan.
 
 #### Troubleshooting
 
-There is a strong likelihood that your attempt to run `particle setup` will fail.  There are known issues trying to connect Photons to enterprise wifi networks like DukeOpen.  If you encounter these issues, try:
+There is a strong likelihood that your attempt to run `particle setup` will fail.  There are known issues trying to connect Photons to enterprise wifi networks like DukeOpen.  If you encounter these issues, with your device in Listening Mode, try:
 
 ```
 particle serial wifi
 ```
 When prompted, choose or enter "DukeOpen" and choose "Unsecured" for security type.  Your Photon should restart.  If it does not, press the "Reset" button on your Photon Redboard.
 
-To claim your Photon (e.g. add it to your Particle account), enter:
+To claim your Photon (e.g. add it to your Particle account), you first need to get its deviceID.  With the Photon in Listening Mode, enter the following at the `$` prompt in your terminal/command line:
 ```
 particle serial identify
 ```
 and copy the deviceID that the command returns.
 
-Then, add the device to your account using:
+Next, give your device a human-readable name by using the following command:
+```
+particle device rename <deviceID> "SomeGreatName"
+```
+(Of course you'll use a more clever name than "SomeGreatName"!)
+
+Then, press the RESET button to restart your Photon and get it connected to DukeOpen wifi.   
+
+Now you can finally add the device to your Particle account using:
 ```
 particle device add <deviceID>
 ```
 
-Finally, give your device a human-readable name by using the following command:
-```
-particle device rename <deviceID> "SomeGreatName"
-```
+
 
 ## Part II: Deploy your Code to Photon
 
@@ -147,4 +160,6 @@ If your code is contained in several files, create a new folder and then put all
 
 Tips:
 
-If you need to transfer your photon to other users, be sure to go to Particle Console and deregister it. Otherwise, other users will not be able to claim this device. If you have any other questions, please refer to Particle CLI Docs for help.
+If you need to transfer your Photon to other users, be sure to go to [Particle Console](https://console.particle.io/devices) and click on the `...` to choose Unclaim Device. Otherwise, other users will not be able to claim this device.
+
+If you have any other questions, contact your instructors and/or refer to [Particle CLI Docs](https://docs.particle.io/guide/tools-and-features/cli/photon/) for help.
