@@ -22,4 +22,4 @@ We've already made some use of Particle's console (and its Publish/Subscribe i/o
 
 In this tutorial, we will use [myDevice's Cayenne IoT Project Builder](https://mydevices.com/cayenne/features/).
 
-<img src="{{ "/images/cayenne/cayenne.jpg" | prepend: site.baseurl }}{{ img }}" alt="Cayenne Logo" width="60%">
+<img src="{{ "/images/cayenne/cayenne.jpg" | prepend: site.baseurl }}{{ img }}" alt="Cayenne Logo" width="20%">
