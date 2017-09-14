@@ -1,9 +1,11 @@
 ---
-title: Extending the Environment Monitor - Cayenne Dashboard
+title: Cayenne Dashboard
 category: Tutorials
 order: 3
 
 ---
+
+## Extending the Environment Monitor with Cayenne Dashboard
 
 <img src="{{ "/images/cayenne/environment-monitor-fritzing_bb.png" | prepend: site.baseurl }}{{ img }}" alt="Environment Monitor Wiring Diagram">
 
