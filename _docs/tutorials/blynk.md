@@ -22,7 +22,7 @@ We've already made some use of Particle's console (and its Publish/Subscribe i/o
 
 In this tutorial, we will use [Blynk](http://www.blynk.cc/).
 
-<img src="{{ "/images/blynk/blynk.jpg" | prepend: site.baseurl }}{{ img }}" alt="Blynk Logo">
+<img src="{{ "/images/blynk/blynk.png" | prepend: site.baseurl }}{{ img }}" alt="Blynk Logo">
 
 ## What is Blynk?
 
@@ -115,37 +115,69 @@ You can adjust the position and size of your widgets by pressing and holding on 
 You are now ready to make the modifications to your Photon's Arduino code to connect to the Blynk App and Server.
 
 
+
 ## Part III:  Modify your Code
 
-Recall that the code from [Experiment 6](https://learn.sparkfun.com/tutorials/sparkfun-inventors-kit-for-photon-experiment-guide/experiment-6-environment-monitor) took temperature and humidity readings from the RTH03 sensor and light readings from the photocell every 1.5 seconds.  The onboard LED (attached to pin D7) would blink every time a reading was taken from the sensors.
+Recall that the code from [Experiment 6](https://learn.sparkfun.com/tutorials/sparkfun-inventors-kit-for-photon-experiment-guide/experiment-6-environment-monitor) took temperature and humidity readings from the RTH03 sensor and light readings from the photocell every 1.5 seconds.  The onboard LED (attached to pin D7) would blink every time a reading was taken from the sensors.   And the data from these sensor readings was sent over USB serial to your attached computer.   The whole point of the IoT, however, is that devices can operate wirelessly and remotely.
 
-In this exercise, we will modify the code so that instead of simply writing the data to serial, the Photon will send the data to the Blynk Server.
+In this exercise, we will modify the Experiment 6 code so that instead of simply writing the data to serial, the Photon will send the data to the Blynk Server enabling its display on the Blynk App dashboard we created in Part II above.
 
 1.  Go into the [Particle online IDE](https://build.particle.io) and find the Particle app that you created when you completed Part I of Exercise 6.   
 
-2.  Select all of the code in that app and then create a new app called "EnvironmentalLoggerBlynk", pasting the code into the new app.   
+2.  Select all of the code in that app and copy it.  Next, create a new app called "EnvironmentalLoggerBlynk", pasting the code into the new app.   
 
-3.  Go to the Libraries section of the online IDE and search for "blynk".
+3.  Note that the libraries associated with a particular project *DO NOT*  get copied over when you cut-and-paste code between projects in the Particle online IDE.  As a consequence, you will need to re-include the RHT03 library:   
+   * Delete the top two lines of the code you've copied over:
+   ```c++
+   // This #include statement was automatically added by the Particle IDE.
+   #include <SparkFunRHT03.h>
+   ```
+   * Go to the Libraries section of the online IDE and search for "RHT03".
+   * Click on "SparkFunRHT03" to select that library and then click on the blue "Include in Project" button.
+   * Under "Which App?", select the project that you just created and click "Confirm".   
 
-4.  Click on it and then choose the blue "Include in Project" button.  
+4.  Also add the "blynk" library, which will enable functions for communication between your Photon and the Blynk ecosystem.
 
-5.  Under "Which App?", select the project that you just created and click "Confirm".   
-   This will add a new line to the top of your code:
+5.  Your code should now have both of the following libraries included in the code
 ```c++
+#include <SparkFunRHT03.h>
 #include <blynk.h>
 ```   
-This tells the Particle IDE to bundle the Blynk libraries with your code when it compiles it and flashes it to your Photon.  
+and listed under the Particle app's "Included Libraries" list in the Code panel.
 
-   Note:  *If you get compile errors on Verify that relate to the RTH03 sensor library, you may need to re-add that library to this new project.*
+6.  Now we can add in the code necessary to interact with the basic functionalities of the Blynk library.  For more information on these functions, visit the [Blynk Firmware Documentation](http://docs.blynk.cc/#blynk-firmware).    
 
-6.  Find your Auth Token from Part I, &#35;7 and add it to the declarations above the `void setup()` function:   
+   Find your Auth Token from Part I, &#35;7 and add it to the declarations above the `void setup()` function:   
 ```c++
 char auth[] = "YourAuthToken";
 ```
 
-7.  Inside the `void setup()` function, add:
+7.  Inside the `void setup()` function, on the last line before the closing }, add:
 ```c++
 Blynk.begin(auth); // initiate Blynk library
 ```
+http://docs.blynk.cc/#blynk-firmware-configuration-blynkbegin   
+This function initiates the Blynk library and establishes a connection to the Blynk server.
 
-8.  
+8.  At the top of the `void loop()` function, add:
+```c++
+Blynk.run()
+```
+http://docs.blynk.cc/#blynk-firmware-connection-management-blynkrun   
+This function will enable Blynk's access (read and/or write) to the digital and analog pins of your Photon if you have configured them in the Blynk App.  
+
+9.  Finally, in the section of the `void loop()` after the calculation of `humidity` and `tempF` and before the section of `Serial.print()` section, add the following lines:   
+   ```c++
+   //virtual pin 1 will be the temperature
+   Blynk.virtualWrite(V0, tempF);
+
+   //virtual pin 2 will be humidity
+   Blynk.virtualWrite(V1, humidity);
+   ```   
+   These functions will "write" the values of the tempF and humidity variables to the Blynk server and relay them to the corresponding widgets on the Blynk App canvas.
+
+10.  Verify and then flash the code to your Photon Redboard.
+
+11.  Finally, in the Blynk App, click the "play" icon in the upper-right of the Blynk mobile app to switch from EDIT to PLAY mode.   
+<img src="{{ "/images/blynk/play.png" | prepend: site.baseurl }}{{ img }}" alt="PLAY mode button" >   
+You should see data appear in the App, updating regularly.
