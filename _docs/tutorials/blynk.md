@@ -161,7 +161,7 @@ This function initiates the Blynk library and establishes a connection to the Bl
 
 8.  At the top of the `void loop()` function, add:
 ```c++
-Blynk.run()
+Blynk.run();
 ```
 http://docs.blynk.cc/#blynk-firmware-connection-management-blynkrun   
 This function will enable Blynk's access (read and/or write) to the digital and analog pins of your Photon if you have configured them in the Blynk App.  
