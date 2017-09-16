@@ -167,13 +167,11 @@ This function will enable Blynk's access (read and/or write) to the digital and 
 
 9.  Finally, in the section of the `void loop()` after the calculation of `humidity` and `tempF` and before the section of `Serial.print()` section, add the following lines:
 ```c++
-//virtual pin 1 will be the temperature
-Blynk.virtualWrite(V0, tempF);
+Blynk.virtualWrite(V0, tempF); //virtual pin 0 will be the temperature
 
-//virtual pin 2 will be humidity
-Blynk.virtualWrite(V1, humidity);
+Blynk.virtualWrite(V1, humidity); //virtual pin 1 will be humidity
 ```
-These functions will "write" the values of the tempF and humidity variables to the Blynk server and relay them to the corresponding widgets on the Blynk App canvas.  More info on [Blynk.virtualWrite()](http://docs.blynk.cc/#blynk-firmware-virtual-pins-control-blynkvirtualwritevpin-value) 
+These functions will "write" the values of the tempF and humidity variables to the Blynk server and relay them to the corresponding widgets on the Blynk App canvas.  More info on [Blynk.virtualWrite()](http://docs.blynk.cc/#blynk-firmware-virtual-pins-control-blynkvirtualwritevpin-value)
 
 10.  Verify and then flash the code to your Photon Redboard.
 
