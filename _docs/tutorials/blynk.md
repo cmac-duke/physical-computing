@@ -174,7 +174,7 @@ This function will enable Blynk's access (read and/or write) to the digital and 
    //virtual pin 2 will be humidity
    Blynk.virtualWrite(V1, humidity);
 ```   
-   These functions will "write" the values of the tempF and humidity variables to the Blynk server and relay them to the corresponding widgets on the Blynk App canvas.
+These functions will "write" the values of the tempF and humidity variables to the Blynk server and relay them to the corresponding widgets on the Blynk App canvas.
 
 10.  Verify and then flash the code to your Photon Redboard.
 
