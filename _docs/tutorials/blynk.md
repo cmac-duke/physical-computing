@@ -145,9 +145,8 @@ In this exercise, we will modify the Experiment 6 code so that instead of simply
 ```   
 and listed under the Particle app's "Included Libraries" list in the Code panel.
 
-6.  Now we can add in the code necessary to interact with the basic functionalities of the Blynk library.  For more information on these functions, visit the [Blynk Firmware Documentation](http://docs.blynk.cc/#blynk-firmware).    
-
-   Find your Auth Token from Part I, &#35;7 and add it to the declarations above the `void setup()` function:   
+6.  Now we can add in the code necessary to interact with the basic functionalities of the Blynk library.  For more information on these functions, visit the [Blynk Firmware Documentation](http://docs.blynk.cc/#blynk-firmware).   
+Find your Auth Token from Part I, &#35;7 and add it to the declarations above the `void setup()` function:   
 ```c++
 char auth[] = "YourAuthToken";
 ```
@@ -167,7 +166,6 @@ http://docs.blynk.cc/#blynk-firmware-connection-management-blynkrun
 This function will enable Blynk's access (read and/or write) to the digital and analog pins of your Photon if you have configured them in the Blynk App.  
 
 9.  Finally, in the section of the `void loop()` after the calculation of `humidity` and `tempF` and before the section of `Serial.print()` section, add the following lines:   
-
 ```c++
    //virtual pin 1 will be the temperature
    Blynk.virtualWrite(V0, tempF);
@@ -175,8 +173,7 @@ This function will enable Blynk's access (read and/or write) to the digital and 
    //virtual pin 2 will be humidity
    Blynk.virtualWrite(V1, humidity);
 ```
-
-These functions will "write" the values of the tempF and humidity variables to the Blynk server and relay them to the corresponding widgets on the Blynk App canvas.
+  These functions will "write" the values of the tempF and humidity variables to the Blynk server and relay them to the corresponding widgets on the Blynk App canvas.
 
 10.  Verify and then flash the code to your Photon Redboard.
 
