@@ -82,18 +82,18 @@ particle serial identify
 ```
 and copy the deviceID that the command returns.
 
-Next, give your device a human-readable name by using the following command:
+Now you can finally add the device to your Particle account using:
+```
+particle device add <deviceID>
+```
+
+Now you can finally give your device a human-readable name by using the following command:
 ```
 particle device rename <deviceID> "SomeGreatName"
 ```
 (Of course you'll use a more clever name than "SomeGreatName"!)
 
 Then, press the RESET button to restart your Photon and get it connected to DukeOpen wifi.   
-
-Now you can finally add the device to your Particle account using:
-```
-particle device add <deviceID>
-```
 
 
 
