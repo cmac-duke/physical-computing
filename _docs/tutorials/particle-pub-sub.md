@@ -132,7 +132,7 @@ In this project, we'll define a Particle function which can be triggered from th
 
 * **Particle.function("name", function)** : Lets you define a function that can be triggered from the internet. You pass in a "name" (used to trigger the function from the web) and a function (defines what function is called when this is triggered).
 
-* **RGB.control(true|false)** : Setting this function to `true` enables access to the Photon Redboard's on-board RGB LED.  It is typically called in the `void setup()` function.
+* **RGB.control(true or false)** : Setting this function to `true` enables access to the Photon Redboard's on-board RGB LED.  It is typically called in the `void setup()` function.
 
 * **RGB.color(red, green, blue)** :  This function allows you to set the red, green, and blue channels of the on-board RGB.   Values for each channel can range from 0 to 255.  
 
@@ -149,72 +149,75 @@ Since this circuit uses the Photon Redboard's on-board RGB LED, there is no addi
 1. Create a new App by clicking on "Create New App" button in the Code panel of the Particle online IDE, or direct your web browser to [https://build.particle.io/build/new](https://build.particle.io/build/new)
 
 2.  The [code](https://gitlab.oit.duke.edu/colabroots/intro-connected-devices/blob/master/project-2/project-2.ino) for this project is much more substantial:
-    ```c++
-    String lightMode; // variable to hold lightMode color
 
-    void setup() {
-      RGB.control(true); // enables access to on-board RGB LED
-      RGB.color(0, 0, 0); // resets the light to offers
+```
+String lightMode; // variable to hold lightMode color
 
-      Particle.function("setLight", setLight); // creates ("registers") a function and makes it available for external access
-    }
+void setup() {
+  RGB.control(true); // enables access to on-board RGB LED
+  RGB.color(0, 0, 0); // resets the light to offers
 
-    int setLight(String command) { // variable to hold setLight commands
-      lightMode = command;
-      return 1;
-    }
+  Particle.function("setLight", setLight); // creates ("registers") a function and makes it available for external access
+}
 
-    void loop() {
-      if (lightMode == "red") {
-        RGB.color(255, 0, 0);
-      } else if (lightMode == "green") {
-        RGB.color(0, 255, 0);
-      } else if (lightMode == "blue") {
-        RGB.color(0, 0, 255);
-      } else if (lightMode == "rainbow") {
-        showTheRainbow();
-      } else {
-        RGB.color(0, 175, 255); // white
-      }
-    }
+int setLight(String command) { // variable to hold setLight commands
+  lightMode = command;
+  return 1;
+}
 
-    void showTheRainbow() {
-      // number of milliseconds to delay between pixel change
-      // lower this number to speed up the rainbow
-      int rainbowDelay = 10;
+void loop() {
+  if (lightMode == "red") {
+    RGB.color(255, 0, 0);
+  } else if (lightMode == "green") {
+    RGB.color(0, 255, 0);
+  } else if (lightMode == "blue") {
+    RGB.color(0, 0, 255);
+  } else if (lightMode == "rainbow") {
+    showTheRainbow();
+  } else {
+    RGB.color(0, 175, 255); // white
+  }
+}
 
-      // start with Red on, and make Green grow brighter
-      for (int i = 0; i < 255; i += 10) {
-        RGB.color(255, i, 0);
-        delay(rainbowDelay);
-      }
-      // Green is now on, make Red shrink
-      for (int i = 0; i < 255; i += 10) {
-        RGB.color(255 - i, 255, 0);
-        delay(rainbowDelay);
-      }
-      // Green is now on, make Blue grow
-      for (int i = 0; i < 255; i += 10) {
-        RGB.color(0, 255, i);
-        delay(rainbowDelay);
-      }
-      // Blue is now on, make Green shrink
-      for (int i = 0; i < 255; i += 10) {
-        RGB.color(0, 255 - i, 255);
-        delay(rainbowDelay);
-      }
-      // Blue is now on, make Red grow
-      for (int i = 0; i < 255; i += 10) {
-        RGB.color(i, 0, 255);
-        delay(rainbowDelay);
-      }
-      // Red is now on, make Blue shrink
-      for (int i = 0; i < 255; i += 10) {
-        RGB.color(255, 0, 255 - i);
-        delay(rainbowDelay);
-      }
-    }
-    ```
+void showTheRainbow() {
+  // number of milliseconds to delay between pixel change
+  // lower this number to speed up the rainbow
+  int rainbowDelay = 10;
+
+  // start with Red on, and make Green grow brighter
+  for (int i = 0; i < 255; i += 10) {
+    RGB.color(255, i, 0);
+    delay(rainbowDelay);
+  }
+  // Green is now on, make Red shrink
+  for (int i = 0; i < 255; i += 10) {
+    RGB.color(255 - i, 255, 0);
+    delay(rainbowDelay);
+  }
+  // Green is now on, make Blue grow
+  for (int i = 0; i < 255; i += 10) {
+    RGB.color(0, 255, i);
+    delay(rainbowDelay);
+  }
+  // Blue is now on, make Green shrink
+  for (int i = 0; i < 255; i += 10) {
+    RGB.color(0, 255 - i, 255);
+    delay(rainbowDelay);
+  }
+  // Blue is now on, make Red grow
+  for (int i = 0; i < 255; i += 10) {
+    RGB.color(i, 0, 255);
+    delay(rainbowDelay);
+  }
+  // Red is now on, make Blue shrink
+  for (int i = 0; i < 255; i += 10) {
+    RGB.color(255, 0, 255 - i);
+    delay(rainbowDelay);
+  }
+}
+```
+
+
 3.  Copy and paste it into your new App and click the Folder icon to save the file.
 
 4.  Click on the Verify &#x2714; icon to check your code for errors.  Address any errors that the IDE may identify.
@@ -287,7 +290,8 @@ This is the same hardware configuration as Project 1 above:
 1. Create a new App by clicking on "Create New App" button in the Code panel of the Particle online IDE, or direct your web browser to [https://build.particle.io/build/new](https://build.particle.io/build/new)
 
 2.  Here is the [code for Project 3](https://gitlab.oit.duke.edu/colabroots/intro-connected-devices/blob/master/project-3/project-3.ino):   
-    ```c++
+
+```c++
     #define BUTTON_PIN D0
 
     String lightMode;
@@ -370,10 +374,11 @@ This is the same hardware configuration as Project 1 above:
         delay(rainbowDelay);
       }
     }
-    ```
-    Note that you need to insert a unique name for your team in two places, once in `void setup()` and once in `void loop()`.  The name must match across members of your team to enable inter-device communication.   It should be enclosed in quotes wit no spaces.
+```
 
-    Note as well that you should give **each device** on your team a unique color ("red", "green", "blue", or "rainbow") so that you can see the effect of an individual Photon Redboard on the group.
+Note that you need to insert a unique name for your team in two places, once in `void setup()` and once in `void loop()`.  The name must match across members of your team to enable inter-device communication.   It should be enclosed in quotes wit no spaces.
+
+Note as well that you should give **each device** on your team a unique color ("red", "green", "blue", or "rainbow") so that you can see the effect of an individual Photon Redboard on the group.
 
 3.  Click on the Verify &#x2714; icon to check your code for errors.  Address any errors that the IDE may identify.
 
