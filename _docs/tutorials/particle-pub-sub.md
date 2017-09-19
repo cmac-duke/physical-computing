@@ -13,12 +13,17 @@ The goal of this project is to create an internet-connected button that, when pr
 
 ### Key Concepts
 
-* **void setup()**: all Arduino code must have a setup function defined. This gets run once when the system boots up.
-* **void loop()**: all Arduino code must also have a loop function defined. After setup is run, this function runs in an infinite loop.
-* **pinMode()**: tells the device that we'll be using a pin to either gather `INPUT` or provide `OUTPUT`.
-* **digitalRead()**: takes a digital (binary) reading from the specified pin. This will return `HIGH` or `LOW` depending on the state of the pin.
-* **Particle.publish()**: This function publishes an event to the Particle console. This is what we'll use with [IFTTT](https://ifttt.com) to make the magic happen.
-* **delay()**: This function pauses the program for the specified number of milliseconds, useful here so the button press is only registered once instead of many times.  The latter phenomenon is known as ["switch bouncing"](https://www.allaboutcircuits.com/technical-articles/switch-bounce-how-to-deal-with-it/) and can cause all sorts of irregular behavior in a circuit.  A delay is one way of addressing the problem but it can also be solved with hardware (e.g. a capacitor) or using software (e.g. edge detection).
+* **void setup()** : all Arduino code must have a setup function defined. This gets run once when the system boots up.
+
+* **void loop()** : all Arduino code must also have a loop function defined. After setup is run, this function runs in an infinite loop.
+
+* **pinMode()** : tells the device that we'll be using a pin to either gather `INPUT` or provide `OUTPUT`.
+
+* **digitalRead()** : takes a digital (binary) reading from the specified pin. This will return `HIGH` or `LOW` depending on the state of the pin.
+
+* **Particle.publish()** : This function publishes an event to the Particle console. This is what we'll use with [IFTTT](https://ifttt.com) to make the magic happen.
+
+* **delay()** : This function pauses the program for the specified number of milliseconds, useful here so the button press is only registered once instead of many times.  The latter phenomenon is known as ["switch bouncing"](https://www.allaboutcircuits.com/technical-articles/switch-bounce-how-to-deal-with-it/) and can cause all sorts of irregular behavior in a circuit.  A delay is one way of addressing the problem but it can also be solved with hardware (e.g. a capacitor) or using software (e.g. edge detection).
 
 ### Hardware Configuration
 
@@ -79,7 +84,8 @@ If the wiring and the code correspond and follow the correct syntax, pressing th
 
 IFTTT (If This Then That) is a powerful platform for connecting up services between different applications.  In this section we'll create an "Applet" that connects up the Particle Console to email.
 
-1.  Visit [https://ifttt.com/create](https://ifttt.com/create)
+1.  Visit [https://ifttt.com/create](https://ifttt.com/create)   
+[Note:  If you haven't already created an account on IFTTT, you need to begin here:  [https://ifttt.com/join](https://ifttt.com/join)]
 
 2. Click on the `+this` link.
 
@@ -114,7 +120,149 @@ IFTTT (If This Then That) is a powerful platform for connecting up services betw
 
  14.  You should receive an email each time the button is pressed!!  Spam spam spam!!
 
+More information on Particle's integration with IFTTT can be found at [https://docs.particle.io/guide/tools-and-features/ifttt/](https://docs.particle.io/guide/tools-and-features/ifttt/)
 
- ## Project 2 - Internet Controlled LED
 
- https://gitlab.oit.duke.edu/colabroots/intro-connected-devices/blob/master/project-2/project-2.ino 
+## Project 2 - Internet Controlled LED
+
+In this project, we'll define a Particle function which can be triggered from the internet (using an HTTP request, or IFTTT).  This function will control the color of the Photon Redboard's on-board RGB LED.   
+   <img src="{{ "/images/particle_pub_sub/onboardRGB.png" | prepend: site.baseurl }}{{ img }}" alt="Photon Redboard's on-board RGB LED">
+
+### Key Concepts
+
+* **Particle.function("name", function)** : Lets you define a function that can be triggered from the internet. You pass in a "name" (used to trigger the function from the web) and a function (defines what function is called when this is triggered).
+
+* **RGB.control(true|false)** : Setting this function to `true` enables access to the Photon Redboard's on-board RGB LED.  It is typically called in the `void setup()` function.
+
+* **RGB.color(red, green, blue)** :  This function allows you to set the red, green, and blue channels of the on-board RGB.   Values for each channel can range from 0 to 255.  
+
+* **void showTheRainbow()** : This is an example of a function which can be called from within other functions (like in the `void loop()` function). Organizing code into well named functions is helpful for organizing and understanding what the code does.
+
+* **for(int i = 0; i < 255; i += 10) {...}*** : Standard for loop. Defines a variable i which starts at 0, runs the code inside the {} brackets, then increases i by 10 and runs the code again until it is greater than 255.
+
+### Hardware Configuration
+
+Since this circuit uses the Photon Redboard's on-board RGB LED, there is no additional hardware configuration required.
+
+### Particle IDE
+
+1. Create a new App by clicking on "Create New App" button in the Code panel of the Particle online IDE, or direct your web browser to [https://build.particle.io/build/new](https://build.particle.io/build/new)
+
+2.  The [code](https://gitlab.oit.duke.edu/colabroots/intro-connected-devices/blob/master/project-2/project-2.ino) for this project is much more substantial:
+    ```c++
+    String lightMode; // variable to hold lightMode color
+
+    void setup() {
+      RGB.control(true); // enables access to on-board RGB LED
+      RGB.color(0, 0, 0); // resets the light to offers
+
+      Particle.function("setLight", setLight); // creates ("registers") a function and makes it available for external access
+    }
+
+    int setLight(String command) { // variable to hold setLight commands
+      lightMode = command;
+      return 1;
+    }
+
+    void loop() {
+      if (lightMode == "red") {
+        RGB.color(255, 0, 0);
+      } else if (lightMode == "green") {
+        RGB.color(0, 255, 0);
+      } else if (lightMode == "blue") {
+        RGB.color(0, 0, 255);
+      } else if (lightMode == "rainbow") {
+        showTheRainbow();
+      } else {
+        RGB.color(0, 175, 255); // white
+      }
+    }
+
+    void showTheRainbow() {
+      // number of milliseconds to delay between pixel change
+      // lower this number to speed up the rainbow
+      int rainbowDelay = 10;
+
+      // start with Red on, and make Green grow brighter
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(255, i, 0);
+        delay(rainbowDelay);
+      }
+      // Green is now on, make Red shrink
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(255 - i, 255, 0);
+        delay(rainbowDelay);
+      }
+      // Green is now on, make Blue grow
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(0, 255, i);
+        delay(rainbowDelay);
+      }
+      // Blue is now on, make Green shrink
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(0, 255 - i, 255);
+        delay(rainbowDelay);
+      }
+      // Blue is now on, make Red grow
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(i, 0, 255);
+        delay(rainbowDelay);
+      }
+      // Red is now on, make Blue shrink
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(255, 0, 255 - i);
+        delay(rainbowDelay);
+      }
+    }
+    ```
+3.  Copy and paste it into your new App and click the Folder icon to save the file.
+
+4.  Click on the Verify &#x2714; icon to check your code for errors.  Address any errors that the IDE may identify.
+
+5.  Click on the Flash &#x26A1; icon to "flash" your code to your Photon Redboard.
+
+6.  Test your code by executing the following Particle CLI command in Terminal:
+    ```
+    particle call <deviceID or deviceName> setLight "<color>"
+    ```
+    Your options for `"<color>"` are `"red"`, `"green"`, `"blue"`, and `"rainbow"`.  Any other color name will result in white.  
+    A successful function call will return `1` (true) to your console.
+
+### Use IFTTT to use Email to Change the LED's color
+
+You can also create a webpage to control your Photon using the [Particle API JS](https://docs.particle.io/reference/javascript/).  However, given that we're already a bit familiar with IFTTT from Part I above, let's use it to control our device via email.
+
+1.  Visit [https://ifttt.com/my_applets](https://ifttt.com/my_applets)
+
+2.  Click on the "New Applet" button in the upper-right of the page.
+
+3.  Click on the `+this` link.
+
+4.  In the "Search Services" search bar, type "Email" and then click on the Email service icon.
+
+5.  Choose the "Send IFTTT any email" trigger:   
+   <img src="{{ "/images/particle_pub_sub/email_trigger.png" | prepend: site.baseurl }}{{ img }}" alt="Send IFFT any email">
+
+6.  Click on the `+that` link.
+
+7.  Search for the Particle service and click to access its available actions.
+
+8.  Choose "Call a function"   
+   <img src="{{ "/images/particle_pub_sub/particle_action_callfunction.png" | prepend: site.baseurl }}{{ img }}" alt="Call a function">
+
+9.  In the Action Settings for this action, you can choose from any available functions that are being broadcast from your Photon Redboard.   Note that the Redboard must be powered on and connected to the Particle cloud / Internet in order to be visible here.  You should see `setLight on <DeviceName>` already pre-populated in the `Then call (Function Name)` drop-down.   
+   <img src="{{ "/images/particle_pub_sub/particle_callfunction_settings.png" | prepend: site.baseurl }}{{ img }}" alt="Call a function Settings Panel">   
+   * Click in the `with input (Function Input)` field and delete `{{body}}`.
+   * Click on the `Add ingredient` button and choose `Subject`.  This will allow you to send a color name "red", "green", "blue", or "rainbow" as the Subject of your email and the Photon Redboard's RGB LED will change accordingly.
+   * Click the "Create Action" button.
+
+10. Click on the "Finish" button to complete the creation of this Applet and enable it.
+
+11.  Test your Applet by sending an email to `trigger@applet.ifttt.com` with `red` in the Subject line.  Make sure you're sending the email from the account you used to set up your IFTTT account.  The on-board RGB LED should change to red.
+
+[Note:  You will have noticed in step 9 that you could also send your color in the `{{Body}}` or `{{BodyHTML}}` of your email.  This does not seem to work.  IFTTT support has been contacted.]
+
+
+## Project 3 - Communicating Devices
+
+In this project, we'll use both ends of the Particle event system - publishing and subscribing - in order to build devices which talk to each other.
