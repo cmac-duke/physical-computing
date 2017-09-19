@@ -272,7 +272,7 @@ This project requires using multiple devices, so you'll need to work in groups o
 
 ### Key Concepts
 
-* **Particle.subscribe("EventName", function)** : This function allows you to *subscribe* to all Particle Events published to the Event Name indicated.  When a message is received at that Event Name, the specified function is called.  For more information, visit [https://docs.particle.io/reference/firmware/photon/#particle-subscribe-](https://docs.particle.io/reference/firmware/photon/#particle-subscribe-)
+* **Particle.subscribe("EventName", function)** : This function allows you to *subscribe* to all Particle Events published to the Event Name indicated.  When a message is received at that Event Name, the specified function is called.  You must pass in the `"EventName"` of the event, and a `function` to run when the event is published.For more information, visit [https://docs.particle.io/reference/firmware/photon/#particle-subscribe-](https://docs.particle.io/reference/firmware/photon/#particle-subscribe-)
 
 * **#define** : A useful C component that allows the programmer to give a name to a constant value before the program is compiled. *Defined constants in Arduino don't take up any program memory space on the chip.* The compiler will replace references to these constants with the defined value at compile time. For more information, visit [https://www.arduino.cc/en/Reference/Define](https://www.arduino.cc/en/Reference/Define)
 
