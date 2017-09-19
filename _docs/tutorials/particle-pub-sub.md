@@ -40,29 +40,31 @@ The online Particle IDE allows you to write code and than "flash" that code to y
 3.  Note that the IDE pre-populates your code with the essential functions of any Arduino-based sketch:  `void setup()` and `void loop()`.
 
 4.  Let's begin by declaring a variable to hold the pin number that our pushbutton is attached to.  If your wiring scheme matches the image above, that's digital pin 0 (D0).  Add the following to your code, *above `void setup(){`*:   
-    ```c++
-    const int buttonPin = D0;
-    ```
+```c++
+const int buttonPin = D0;
+```
 
 5.  Next, let's use the `pinMode()` function to set buttonPin to function as an input (e.g. we want to read the state of D0).  This should be placed *inside* the `void setup()` function, so that it reads:   
-    ```c++
-    void setup() {
-        pinMode(buttonPin, INPUT);
-    }
-    ```
+```c++
+void setup() {
+    pinMode(buttonPin, INPUT);
+}
+```
+
 6.  On the first line of the `void loop()` function, type:
-    ```c++
-    int buttonState = digitalRead(buttonPin);
-    ```   
-    This will read the state of pin D0 at the start of every iteration of the `void loop()` function and store that state in a variable called `buttonState`.  The value of `buttonState` will be `HIGH` (or `1`) when the button is pressed, and `LOW` (or `0`) when it is released.
+```c++
+int buttonState = digitalRead(buttonPin);
+```
+
+This will read the state of pin D0 at the start of every iteration of the `void loop()` function and store that state in a variable called `buttonState`.  The value of `buttonState` will be `HIGH` (or `1`) when the button is pressed, and `LOW` (or `0`) when it is released.
 
 7.  Beneath that line, and still within the `void loop()` function, type the following:   
-    ```c++
-    if (buttonState == HIGH) {
-        Particle.publish("buttonPressed");
-        delay(2000);
-    }
-    ```
+```c++
+if (buttonState == HIGH) {
+    Particle.publish("buttonPressed");
+    delay(2000);
+}
+```
     This `if` statement will, if the button is pressed, use the special Photon-specific `Particle.publish()` function to send a message Event to the Particle Console.  And then the program will delay for 2 seconds to avoid switch bouncing.
 
 8.  Click on the Folder icon to save the additions to your code.
@@ -150,7 +152,7 @@ Since this circuit uses the Photon Redboard's on-board RGB LED, there is no addi
 
 2.  The [code](https://gitlab.oit.duke.edu/colabroots/intro-connected-devices/blob/master/project-2/project-2.ino) for this project is much more substantial:
 
-```
+```c++
 String lightMode; // variable to hold lightMode color
 
 void setup() {
@@ -225,9 +227,10 @@ void showTheRainbow() {
 5.  Click on the Flash &#x26A1; icon to "flash" your code to your Photon Redboard.
 
 6.  Test your code by executing the following Particle CLI command in Terminal:
-    ```
+```
     particle call <deviceID or deviceName> setLight "<color>"
-    ```
+```
+
     Your options for `"<color>"` are `"red"`, `"green"`, `"blue"`, and `"rainbow"`.  Any other color name will result in white.  
     A successful function call will return `1` (true) to your console.
 
