@@ -41,7 +41,7 @@ The online Particle IDE allows you to write code and than "flash" that code to y
 
 4.  Let's begin by declaring a variable to hold the pin number that our pushbutton is attached to.  If your wiring scheme matches the image above, that's digital pin 0 (D0).  Add the following to your code, *above `void setup(){`*:   
     ```c++
-    int buttonPin = D0;
+    const int buttonPin = D0;
     ```
 
 5.  Next, let's use the `pinMode()` function to set buttonPin to function as an input (e.g. we want to read the state of D0).  This should be placed *inside* the `void setup()` function, so that it reads:   
@@ -230,7 +230,7 @@ Since this circuit uses the Photon Redboard's on-board RGB LED, there is no addi
 
 ### Use IFTTT to use Email to Change the LED's color
 
-You can also create a webpage to control your Photon using the [Particle API JS](https://docs.particle.io/reference/javascript/).  However, given that we're already a bit familiar with IFTTT from Part I above, let's use it to control our device via email.
+You can also create a webpage to control your Photon using the [Particle API JS](https://docs.particle.io/reference/javascript/).  However, given that we're already a bit familiar with IFTTT from Project 1 above, let's use it to control our device via email.
 
 1.  Visit [https://ifttt.com/my_applets](https://ifttt.com/my_applets)
 
@@ -266,3 +266,119 @@ You can also create a webpage to control your Photon using the [Particle API JS]
 ## Project 3 - Communicating Devices
 
 In this project, we'll use both ends of the Particle event system - publishing and subscribing - in order to build devices which talk to each other.
+
+This project requires using multiple devices, so you'll need to work in groups of 2 - 4 people.  Identify your group and choose a unique name for your team!
+
+
+### Key Concepts
+
+* **Particle.subscribe("EventName", function)** : This function allows you to *subscribe* to all Particle Events published to the Event Name indicated.  When a message is received at that Event Name, the specified function is called.  For more information, visit [https://docs.particle.io/reference/firmware/photon/#particle-subscribe-](https://docs.particle.io/reference/firmware/photon/#particle-subscribe-)
+
+* **#define** : A useful C component that allows the programmer to give a name to a constant value before the program is compiled. *Defined constants in Arduino don't take up any program memory space on the chip.* The compiler will replace references to these constants with the defined value at compile time. For more information, visit [https://www.arduino.cc/en/Reference/Define](https://www.arduino.cc/en/Reference/Define)
+
+
+### Hardware Configuration
+
+This is the same hardware configuration as Project 1 above:  
+<img src="{{ "/images/particle_pub_sub/internet_button_wiring.png" | prepend: site.baseurl }}{{ img }}" alt="Internet Button Wiring">
+
+### Particle IDE
+
+1. Create a new App by clicking on "Create New App" button in the Code panel of the Particle online IDE, or direct your web browser to [https://build.particle.io/build/new](https://build.particle.io/build/new)
+
+2.  Here is the [code for Project 3](https://gitlab.oit.duke.edu/colabroots/intro-connected-devices/blob/master/project-3/project-3.ino):   
+    ```c++
+    #define BUTTON_PIN D0
+
+    String lightMode;
+
+    void setup() {
+      RGB.control(true);
+      RGB.color(0, 0, 0);
+
+      pinMode(BUTTON_PIN, INPUT);
+      Particle.subscribe("team_name", blinkLight); // replace team_name with your team's name (no spaces)
+    }
+
+    void loop() {
+      int buttonState = digitalRead(BUTTON_PIN);
+
+      if (buttonState == HIGH) {
+        Particle.publish("team_name", "green"); // replace with your team's name and choose a color for your button
+        delay(2000);
+      }
+    }
+
+    void blinkLight(const char *event, const char *data) {
+      lightMode = data;
+
+      if (lightMode == "red") {
+        RGB.color(255, 0, 0);
+        delay(1000);
+        turnOffLight();
+      } else if (lightMode == "green") {
+        RGB.color(0, 255, 0);
+        delay(1000);
+        turnOffLight();
+      } else if (lightMode == "blue") {
+        RGB.color(0, 0, 255);
+        delay(1000);
+        turnOffLight();
+      } else if (lightMode == "rainbow") {
+        showTheRainbow();
+        turnOffLight();
+      }
+    }
+
+    void turnOffLight() {
+      RGB.color(0, 0, 0);
+    }
+
+    void showTheRainbow() {
+      // number of milliseconds to delay between pixel change
+      // lower this number to speed up the rainbow
+      int rainbowDelay = 10;
+
+      // start with Red on, and make Green grow brighter
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(255, i, 0);
+        delay(rainbowDelay);
+      }
+      // Green is now on, make Red shrink
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(255 - i, 255, 0);
+        delay(rainbowDelay);
+      }
+      // Green is now on, make Blue grow
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(0, 255, i);
+        delay(rainbowDelay);
+      }
+      // Blue is now on, make Green shrink
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(0, 255 - i, 255);
+        delay(rainbowDelay);
+      }
+      // Blue is now on, make Red grow
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(i, 0, 255);
+        delay(rainbowDelay);
+      }
+      // Red is now on, make Blue shrink
+      for (int i = 0; i < 255; i += 10) {
+        RGB.color(255, 0, 255 - i);
+        delay(rainbowDelay);
+      }
+    }
+    ```
+    Note that you need to insert a unique name for your team in two places, once in `void setup()` and once in `void loop()`.  The name must match across members of your team to enable inter-device communication.   It should be enclosed in quotes wit no spaces.
+
+    Note as well that you should give **each device** on your team a unique color ("red", "green", "blue", or "rainbow") so that you can see the effect of an individual Photon Redboard on the group.
+
+3.  Click on the Verify &#x2714; icon to check your code for errors.  Address any errors that the IDE may identify.
+
+4.  Click on the Flash &#x26A1; icon to "flash" your code to your Photon Redboard.
+
+Once the code is flashed to each team member's Photon Redboard, press the button on each one in turn and see how the `Particle.subscribe()` messaging structure works.  
+
+Watch your [Console](https://console.particle.io/events) and note that it registers `Particle.publish()` events from your Photon Redboard but does NOT register subscribed events.  This is constitutive of the nature of the pub/sub messaging framework.
