@@ -5,14 +5,39 @@ order: 9
 
 ---
 
-##Reference 
+# Reference 
 
 https://www.arduino.cc/en/Reference/HomePage
 
 
 This is a quick overview and refresher for the Arduino programming language that we'll be working with throughout this semester. Arduino is based on C++ and carries similar synax and conventions.
 
-### Variables
+---
+
+# VARIABLES 
+
+### Common Data Types
+```c++ 
+float a = 1.117;
+
+int b = 2;
+
+boolean c = false;
+
+char d = 'A';
+```
+
+
+### Common Constants
+```c++ 
+HIGH / LOW 
+
+INPUT / OUTPUT
+```
+
+---
+
+# STRUCTURE 
 
 ### If Statement
 
@@ -58,8 +83,9 @@ for (int i=0; i < 255; i++){
 } 
 ```
 
+---
 
-### Functions
+# Functions
 
 Functions are simply a way to organize your code into tasks. A function is named section of a program that performs a specific task. 
 
@@ -92,6 +118,19 @@ void loop(){
 void loop is a function that "loops" over the code continuously. This is where the majority of your code will live, including all of the actions your board will take.  
 
 The`void loop()` is continuously, allowing your program to change and respond to incoming data.
+
+### Common Pre-defined Variables
+
+```c++
+pinMode()
+digitalWrite()
+digitalRead()
+
+analogReference()
+analogRead()
+analogWrite()
+```
+
 
 
 
