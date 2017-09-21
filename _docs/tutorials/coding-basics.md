@@ -87,7 +87,7 @@ for (int i=0; i < 255; i++){
 
 # Functions
 
-Functions are simply a way to organize your code into tasks. A function is named section of a program that performs a specific task. 
+Functions are simply a way to organize your code into tasks. A function is named section of a program that performs a specific task. Functions help you reuse code without having to rewrite the code.
 
 To execute or "call", a function you can simply type the name of the function with parenthases 
 
@@ -132,8 +132,90 @@ analogWrite()
 ```
 
 
+### Defining your own function
+
+We just saw that there are many pre-defined functions that Arduino gives to us out of the box. But what if we want to write our own? Writing your own functions are pretty straightforward. 
+
+```c++
+void blinkLED(){
+  digitalWrite(ledPin, HIGH); 
+  delay(1000);                  
+  digitalWrite(ledPin, LOW);    
+  delay(1000);                  
+}
+```
+
+We can also give the function variables. Much like you we used `tone` in the last assignment, where `tone(pin, frequency, duration)` we can also say `blinkLED(delayTime)` where "delayTime" is whatever variable we want it to be.
+
+```c++
+void blinkLED(int delayTime){
+  digitalWrite(ledPin, HIGH); 
+  delay(delayTime);                  
+  digitalWrite(ledPin, LOW);    
+  delay(delayTime);                  
+}
+
+```
+
+Then we can call that function
+
+```c++
+int ledPin = 9;
+
+void setup(){
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop(){
+ blinkLED(100);//call the function here with a "delayTime"
+}
 
 
+void blinkLED(int delayTime){
+  digitalWrite(ledPin, HIGH); 
+  delay(delayTime);                  
+  digitalWrite(ledPin, LOW);    
+  delay(delayTime);                  
+}
+```
+
+So what if we have a function that makes a calculation. How to we get, or "return" that value?
+
+Functions that return a value are defined by the value return type at the outset. For instance, if the return value is a `float` the function will start with 
+```
+float myFunction(float theFloat)
+```
+
+Lets make a simple function that calculates the amout of money that we have
+
+```c++
+
+int calculateMoney(int Wallet, int Bank){
+    int Total;
+
+    Total = Wallet + Bank;
+
+    return Total;
+}  
+```
+
+We can then call our function in the main body of our code
+
+```c++
+void setup(){
+  Serial.begin(9600);
+}
+
+void loop(){
+ int allmyMoney = calculateMoney(200, 400);//call the function here with a 
+ Serial.println(allmyMoney);
+}
 
 
+int calculateMoney(int Wallet, int Bank){
+    int Total;
 
+    Total = Wallet + Bank;
+
+    return Total;
+} 
