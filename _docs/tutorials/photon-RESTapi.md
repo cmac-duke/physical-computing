@@ -1,5 +1,5 @@
 ---
-title: Access Photon from Webpage Using REST API
+title: Access Photon Using REST API
 category: Tutorials
 order: 7
 
@@ -206,7 +206,7 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
 1.  Create a new HTML file (with extention `.html`).
 
 2.  Copy and paste the following, which represents the basic skeleton of an HTML5 webpage:
-    ```
+    ```html
     <!DOCTYPE html>
     <html>
         <head>
@@ -236,7 +236,7 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
     Be sure to save your HTML file!
 
 3.  Next, let's add the [jQuery library](https://jquery.com/), which will simplify the Javascript necessary to make GET and POST requests and to parse JSON.   Add the following to the HTML markup, just *above* the closing `</head>` tag:
-    ```
+    ```javascript
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -249,9 +249,9 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
     Be sure to save your HTML file!
 
 4.  Now let's write the Javascript (using jQuery) for accessing our Photon.   Just *above* the closing `</body>` tag, add the following:
-    ```
-    <script type="text/javascript">
 
+    ```javascript
+    <script type="text/javascript">
 
     </script>
     ```
@@ -259,21 +259,22 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
     We'll be working inside this `<script> </script>` tag.
 
     First, let's create some variables to hold our `<deviceID>` and `access_token`:
-    ```
+
+    ```javascript
     var deviceID    = "<yourDeviceIDhere>";
     var accessToken = "<yourAccessTokenHere>";
     ```
     NOTE:  Because your deviceID and access_token will be visible in your HTML code, access to your Photon is relatively insecure.
 
     Next, let's set two variables:  one for the function we want to call (`led`) and a second for the value we want to access on the Photon (`potValue`):
-    ```
+    ```javascript
     var func2call = "led";
     var var2get = "potValue";
     ```
 
 5.  Now we can write the function to attach to the "on" button that will make an http POST request to the Particle API:
 
-    ```
+    ```javascript
     function turnLEDOn() {
         var requestURL = "https://api.particle.io/v1/devices/" + deviceID + "/" + func2call + "/";
         $.post( requestURL, { params: "on", access_token: accessToken });
@@ -281,7 +282,7 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
     ```
 
     And then scroll up to the code for the button with `id="onButton"` and attach an onClick function to it - `onclick="turnLEDOn();"`:
-    ```
+    ```javascript
     <button id="onButton" onclick="turnLEDOn();">ON</button>
     ```
 
@@ -289,7 +290,7 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
 
 6.  Now return to your HTML markup and we can write the function to turn off the LED using an http POST request:
 
-    ```
+    ```javascript
     function turnLEDOff() {
         var requestURL = "https://api.particle.io/v1/devices/" + deviceID + "/" + func2call + "/";
         $.post( requestURL, { params: "off", access_token: accessToken });
@@ -297,14 +298,14 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
     ```
 
     Scroll up to the code for the button with `id="offButton"` and attach this onClick function to it - `onclick="turnLEDOff();"`:
-    ```
+    ```javascript
     <button id="offButton"  onclick="turnLEDOff();">OFF</button>
     ```
 
     Save your HTML file and test it.  You should be able to toggle the on-board LED using the ON and OFF buttons.
 
 7.  Finally, we'll create a function for accessing the value of the Photon's potentiometer using an http GET method.   Add this function to your `<script>` below the two LED functions:
-    ```
+    ```javascript
     function getValue() {
         var requestURL = "https://api.particle.io/v1/devices/" +deviceID + "/" + var2get + "/?access_token=" + accessToken;
         $.getJSON(requestURL, function(json) {
@@ -315,8 +316,33 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
     The code above will make an http GET request to the Particle API which will return a JSON object with a result containing the value of the potentiometer.  The value is then written into `<span id="amount"></span>`, replacing its contents.
 
     Scroll up to the code for the button with `id="getPotentiometer"` and attach an onclick function to it to call the `getValue()` function:
-    ```
+    ```javascript
     <button id="getPotentiometer" onclick="getValue();">Get Potentiometer Value</button>
     ```
 
     Save your HTML file and open it in your browser to test this functionality.
+
+The full .html file is available here:  [photon-RESTapi.html](https://cmac-duke.github.io/physical-computing/code/photon-RESTapi.html)
+
+
+### Other Form Inputs
+
+In addition to buttons, you can use other form inputs for triggering http GET and POST methods.
+
+#### Select
+
+Instead of having two separate buttons and two separate functions for toggling the on-board LED, you could instead use a `<select>` form element:
+```html
+<select id="toggle" onChange="toggleLED(this.value);">
+    <option value="off">OFF</option>
+    <option value="on">ON</option>
+</select>
+```
+
+And then the javascript:
+```javascript
+function toggleLED(toggle) {
+    var requestURL = "https://api.particle.io/v1/devices/" + deviceID + "/" + func2call + "/";
+    $.post( requestURL, { params: toggle, access_token: accessToken });
+}
+```
