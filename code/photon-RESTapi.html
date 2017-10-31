@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Photon REST API Tutorial</title>
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+        </script>
+    </head>
+    <body>
+        <h1>Photon REST API Tutorial</h1>
+
+        <h2>Toggle On-Board LED (D7)</h2>
+        <button id="onButton" onclick="turnLEDOn();">ON</button>
+        <button id="offButton" onclick="turnLEDOff();">OFF</button>
+
+        <hr />
+
+        <h2>Potentiometer Value</h2>
+        <button id="getPotentiometer" onclick="getValue();">Get Potentiometer Value</button>
+        <p>Potentiometer Value: <span id="amount">No Reading Yet</span></p>
+
+        <script type="text/javascript">
+
+            var deviceID    = "3e0033001247353136383631";
+            var accessToken = "f36f458abb5a046eb6870264f66be10f877814c2";
+
+            var func2call = "led";
+            var var2get = "potValue";
+
+            function turnLEDOn() {
+                var requestURL = "https://api.particle.io/v1/devices/" + deviceID + "/" + func2call + "/";
+                $.post( requestURL, { params: "on", access_token: accessToken });
+            }
+
+            function turnLEDOff() {
+                var requestURL = "https://api.particle.io/v1/devices/" + deviceID + "/" + func2call + "/";
+                $.post( requestURL, { params: "off", access_token: accessToken });
+            }
+
+            function getValue() {
+                var requestURL = "https://api.particle.io/v1/devices/" +deviceID + "/" + var2get + "/?access_token=" + accessToken;
+                $.getJSON(requestURL, function(json) {
+                         $("#amount").text(json.result);
+                     });
+            }
+        </script>
+    </body>
+</html>
