@@ -322,7 +322,7 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
 
     Save your HTML file and open it in your browser to test this functionality.
 
-The full .html file is available here:  [photon-RESTapi.html](/physical-computing/code/photon-RESTapi.html)
+The full .html file is available here:  [photon-RESTapi.html](https://github.com/cmac-duke/physical-computing/blob/master/code/photon-RESTapi.html)
 
 
 ### Other Form Inputs
