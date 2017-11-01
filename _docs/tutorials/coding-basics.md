@@ -1,11 +1,11 @@
 ---
 title: Coding Basics
 category: Tutorials
-order: 9
+order: 5
 
 ---
 
-# Reference 
+# Reference
 
 https://www.arduino.cc/en/Reference/HomePage
 
@@ -14,10 +14,10 @@ This is a quick overview and refresher for the Arduino programming language that
 
 ---
 
-# VARIABLES 
+# VARIABLES
 
 ### Common Data Types
-```c++ 
+```c++
 float a = 1.117;
 
 int b = 2;
@@ -29,15 +29,15 @@ char d = 'A';
 
 
 ### Common Constants
-```c++ 
-HIGH / LOW 
+```c++
+HIGH / LOW
 
 INPUT / OUTPUT
 ```
 
 ---
 
-# STRUCTURE 
+# STRUCTURE
 
 ### If Statement
 
@@ -51,7 +51,7 @@ if (someVariable > 50){
 
 ### If-Else Statement
 
-If-else statements state that "if something (is equal, less-than, greater-than, true etc.)", exectue the code inside the "if" statement brackets, otherwise, execute the code "else" statement brackets. For instance, in the statement below, if the variable "someVariable" is less than than 50, print "hello world", otherwise, print "goodbye world". 
+If-else statements state that "if something (is equal, less-than, greater-than, true etc.)", exectue the code inside the "if" statement brackets, otherwise, execute the code "else" statement brackets. For instance, in the statement below, if the variable "someVariable" is less than than 50, print "hello world", otherwise, print "goodbye world".
 
 ```c++
 if (someVariable < 50){
@@ -65,22 +65,22 @@ if (someVariable < 50){
 
 For statements are a bit more obtuse, but if you follow the initial logic, everything should fall into place. For-loops work by "looping" over a variable, until that variable reaches a certain value. As you can see a for loop is comprised of three inital smaller statements: `int i=0; i < 255; i++`
 
-Lets break down these statments so that we understand them individually. 
+Lets break down these statments so that we understand them individually.
 
- We'll start by defining a variable. Traditionally, this variable is "i", but ultimately it can be anything you want.  Here, we'll set an integer variable "i" equal to 0. 
-`int i=0` 
+ We'll start by defining a variable. Traditionally, this variable is "i", but ultimately it can be anything you want.  Here, we'll set an integer variable "i" equal to 0.
+`int i=0`
 
 The next two statements act much like an "if" statment. Here if "i" is less than 255, then "i++". What is `i++`? `i++` is a shortened syntax for "add 1 to the value" or i+1. So we're saying, "if i is less than 255, add 1 to i"
 `i < 255; i++`
 
-If we consider the for-loop below, we are starting with the variable "i" equalling zero, and the code inside of the for-loop will be executed every time until "i" is equal to or greater than 255. 
+If we consider the for-loop below, we are starting with the variable "i" equalling zero, and the code inside of the for-loop will be executed every time until "i" is equal to or greater than 255.
 
 So this for-loop will print "hello world" 255 times.
 
 ```c++
 for (int i=0; i < 255; i++){
       println('hello world')
-} 
+}
 ```
 
 ---
@@ -89,10 +89,10 @@ for (int i=0; i < 255; i++){
 
 Functions are simply a way to organize your code into tasks. A function is named section of a program that performs a specific task. Functions help you reuse code without having to rewrite the code.
 
-To execute or "call", a function you can simply type the name of the function with parenthases 
+To execute or "call", a function you can simply type the name of the function with parenthases
 
 
-Each program will start with the two functions that are pre-defined: `void setup()` and `void loop()` 
+Each program will start with the two functions that are pre-defined: `void setup()` and `void loop()`
 
 ### Void Setup
 
@@ -102,7 +102,7 @@ void setup(){
 }
 ```
 
-void setup is a function where you "set up" your program. Typically, this mean where you will 'set up' you pins to thier respective modes, and set your Serial baud rate. 
+void setup is a function where you "set up" your program. Typically, this mean where you will 'set up' you pins to thier respective modes, and set your Serial baud rate.
 
 The`void setup()` is called once, when the sketch starts after each powerup or reset of the Arduino board.
 
@@ -134,11 +134,11 @@ analogWrite()
 
 ### Defining your own function
 
-We just saw that there are many pre-defined functions that Arduino gives to us out of the box. But what if we want to write our own? Writing your own functions are pretty straightforward. 
+We just saw that there are many pre-defined functions that Arduino gives to us out of the box. But what if we want to write our own? Writing your own functions are pretty straightforward.
 
 ```c++
 void blinkLED(){
-  digitalWrite(ledPin, HIGH); 
+  digitalWrite(ledPin, HIGH);
   delay(1000);                  
   digitalWrite(ledPin, LOW);    
   delay(1000);                  
@@ -149,7 +149,7 @@ We can also give the function variables. Much like you we used `tone` in the las
 
 ```c++
 void blinkLED(int delayTime){
-  digitalWrite(ledPin, HIGH); 
+  digitalWrite(ledPin, HIGH);
   delay(delayTime);                  
   digitalWrite(ledPin, LOW);    
   delay(delayTime);                  
@@ -172,7 +172,7 @@ void loop(){
 
 
 void blinkLED(int delayTime){
-  digitalWrite(ledPin, HIGH); 
+  digitalWrite(ledPin, HIGH);
   delay(delayTime);                  
   digitalWrite(ledPin, LOW);    
   delay(delayTime);                  
@@ -181,7 +181,7 @@ void blinkLED(int delayTime){
 
 So what if we have a function that makes a calculation. How to we get, or "return" that value?
 
-Functions that return a value are defined by the value return type at the outset. For instance, if the return value is a `float` the function will start with 
+Functions that return a value are defined by the value return type at the outset. For instance, if the return value is a `float` the function will start with
 ```
 float myFunction(float theFloat)
 ```
@@ -207,7 +207,7 @@ void setup(){
 }
 
 void loop(){
- int allmyMoney = calculateMoney(200, 400);//call the function here with a 
+ int allmyMoney = calculateMoney(200, 400);//call the function here with a
  Serial.println(allmyMoney);
 }
 
@@ -218,5 +218,5 @@ int calculateMoney(int Wallet, int Bank){
     Total = Wallet + Bank;
 
     return Total;
-} 
+}
 ```
