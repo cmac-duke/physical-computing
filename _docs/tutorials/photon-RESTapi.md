@@ -203,7 +203,7 @@ You can access your accounts available access_tokens as well as create new ones 
 
 In this section, we'll outline the HTML and Javascript necessary to access your Photon using http GET and POST methods.
 
-1.  Create a new HTML file (with extention `.html`).
+1.  Create a new HTML file (with extension `.html`).
 
 2.  Copy and paste the following, which represents the basic skeleton of an HTML5 webpage:
     ```html
@@ -322,7 +322,7 @@ In this section, we'll outline the HTML and Javascript necessary to access your 
 
     Save your HTML file and open it in your browser to test this functionality.
 
-The full .html file is available here:  [photon-RESTapi.html](https://cmac-duke.github.io/physical-computing/code/photon-RESTapi.html)
+The full .html file is available here:  [photon-RESTapi.html](/physical-computing/code/photon-RESTapi.html)
 
 
 ### Other Form Inputs
