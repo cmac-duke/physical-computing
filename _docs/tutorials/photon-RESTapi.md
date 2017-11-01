@@ -333,7 +333,7 @@ In addition to buttons, you can use other form inputs for triggering http GET an
 
 Instead of having two separate buttons and two separate functions for toggling the on-board LED, you could instead use a `<select>` form element:
 ```html
-<select id="toggle" onChange="toggleLED(this.value);">
+<select id="toggle" onchange="toggleLED(this.value);">
     <option value="off">OFF</option>
     <option value="on">ON</option>
 </select>
