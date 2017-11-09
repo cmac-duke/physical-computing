@@ -173,3 +173,9 @@ if __name__ == '__main__':     # Program start from here
     destroy()
 ```
 
+
+Addendum: What is "if __name__ == 'main'"???
+
+<img src="{{ "/images/pi_gpio/name_main.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
+
+
