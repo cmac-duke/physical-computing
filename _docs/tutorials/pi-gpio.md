@@ -67,11 +67,11 @@ import time
 Our goal is a basic hello world, turning an LED on and off, so we'll first define a variable for the pin that we want to use to communicate with the LED by setting the variable ledPin to pin 23.
 
 ```python
-ledPin = 23 
+ledPin = 11
 ```
 
 
-How do we know which pin is number 23? We'll have to set a pin-mode.
+How do we know which pin is number 11? We'll have to set a pin-mode.
 
 Next let's set the pin-mode, which will allow us to reference to pins on our boards. There are two pin-modes: 'BMC' and 'BOARD'
 
@@ -83,12 +83,12 @@ The 'BMC' pin-mode, option means that you are referring to the pins by the "Broa
 
 <img src="{{ "/images/pi_gpio/zero-pins.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
-It's common practice to use the BMC pin-mode rather than the BOARD pin-mode, so for this tutorial we'll stick with BMC. As we can see there is no logic behind the layout of the BMC numbers, so we'll have  to look them up as we go.
+For this tutorial we'll stick with BOARD. 
 
-We'll specify that we want to use BMC with
+We'll specify that we want to use BOARD with
 
 ```python
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 ```
 
 Lastly, we'll have to set our GPIO pins with 'GPIO.setup'. This will communicate to the board that we want to  either pull in data from the pin or output data from the pin. In this case, we'll output data, since we'll be turning an LED on
@@ -110,7 +110,7 @@ We take the setup code that we've writen above, and define our setup function as
 
 ```python
 def setup():
-  GPIO.setmode(GPIO.BMC)       
+  GPIO.setmode(GPIO.BOARD)       
   GPIO.setup(LedPin, GPIO.OUT)   # Set LedPin's mode is output
   GPIO.output(LedPin, GPIO.HIGH) # Set LedPin high(+3.3V) to turn on led
 ```
@@ -118,6 +118,7 @@ def setup():
 Next, we'll define our "loop" function to turn the LED on and off. Much like we did with the initial output command in the setup funciton, we can do the same in the loop function. In our loop function, we'll define a while-loop and set it to "True" (which by default is always true). Next we'll write to the pins with GPIO.output, and set the output to "low" and "high". We'll also define a "sleep time". 
 
 In total this function says while True (all the time), set pin 23 to high (led on), wait 1 second, set pin 23 to low (led off)
+
 ```python
 def loop():
   while True:
@@ -146,10 +147,10 @@ In total, here is our full code:
 import RPi.GPIO as GPIO
 import time
 
-LedPin = 23    # pin23 (pin 16 on BOARD)
+LedPin = 11    # pin23 (pin 16 on BOARD)
 
 def setup():
-  GPIO.setmode(GPIO.BMC)       
+  GPIO.setmode(GPIO.BOARD)       
   GPIO.setup(LedPin, GPIO.OUT)   # Set LedPin's mode is output
   GPIO.output(LedPin, GPIO.HIGH) # Set LedPin high(+3.3V) to turn on led
 
