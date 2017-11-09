@@ -138,6 +138,10 @@ def destroy():
 
 This is an important part to Raspberry Pi programming, unless you code for situations with cleanup, any ports which are in use at the time of an error or Keyboard Interrupt will stay set exactly as they were, even after the program exits. You can imagine the obvious caos and confusion when you restart your script again.
 
+Lastly, we can start our program by setting __name__ equal to '__main__' and calling the functions we defined above. Below 'if __name__ == '__main__', we'll call our setup function. Next we'll try to run the loop function. This function will run until there is a KeyboardInterrupt (Ctrl + C) or the program is killed. When its killed, we'll call our detroy function, turning the LED off and closing the connections. 
+
+In total here is our full code:
+
 ```python
 import RPi.GPIO as GPIO
 import time
