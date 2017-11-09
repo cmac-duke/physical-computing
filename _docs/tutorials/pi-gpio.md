@@ -7,7 +7,7 @@ order: 10
 
 ## GPIO
 
-GPIO stands for 'General-Purpose Input Output', and is a library that allows us to interact with the pins on our board. Because the majority of this class will be developerd in python, we'll be installing python Rpi.GPIO and other packages.
+GPIO stands for 'General-Purpose Input Output', and is a library that allows us to interact with the pins on our board. Because the majority of this class will be developed in python, we'll be installing python Rpi.GPIO and other packages.
 
 <img src="{{ "/images/hello_pi/terminal.png" | prepend: site.baseurl }}{{ img }}" alt="">
 
@@ -23,7 +23,7 @@ this will update the current OS. Next run
  sudo apt-get install python-rpi.gpio 
 ```
 
-This will install the python GPIO package. This package will allow us into interact with the pins on the board ( which we'll solder on later). GPIO stands for 'General-Purpose Input Output'.
+This will install the python GPIO package. This package will allow us into interact with the pins on the board ( which we'll solder on later).
 
 To check that it is installed correctly, type
 
@@ -45,7 +45,7 @@ GPIO.RPI_REVISION
 
 <img src="{{ "/images/hello_pi/checkgpio.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
-Since we've 'ssh'ed' into our rasberry pi's, we'll have to use nano or some other text editor to write our code. My perfered text editor is nano, though vim will also work on the raspberry pi's out of the box. 
+Since we've 'ssh'ed' into our rasberry pi's, we'll have to use nano or some other text editor to write our code. My preferred text editor is nano, though vim will also work on the raspberry pi's out of the box. 
 
 We'll start a new script by navigating to a folder we'd like to work out of and running
 
@@ -57,7 +57,7 @@ We should now have a text editor in front of us start writing our GPIO code.
 
 <img src="{{ "/images/pi_gpio/nano.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
-We'll start by importing the GPIO library and giving it a name, in this case 'GPIO'. The 'as GPIO' portion just allows us to reference the library by writing 'GPIO' instead of 'RPi.GPIO' every time. We'll also import the 'time' library (pre-installed), to give us some time controlls over the actions.
+We'll start by importing the GPIO library and giving it a name, in this case 'GPIO'. The 'as GPIO' portion just allows us to reference the library by writing 'GPIO' instead of 'RPi.GPIO' every time. We'll also import the 'time' library (pre-installed), to give us some time controls over the actions.
 
 ```python
 import RPi.GPIO as GPIO
@@ -75,11 +75,11 @@ How do we know which pin is number 23? We'll have to set a pin-mode.
 
 Next let's set the pin-mode, which will allow us to reference to pins on our boards. There are two pin-modes: 'BMC' and 'BOARD'
 
-While the GPIO library is relatively straitforward to use, though the layout of the pins, and how to reference them are a bit confusing at first. 
+While the GPIO library is relatively straightforward to use, though the layout of the pins, and how to reference them are a bit confusing at first. 
 
 Using the 'BOARD' pin-mode is the most straight-forward, as the pins count left to right, from the top of the board to the bottom. They are referenced by the circles in the image below.
 
-The 'BMC' pin-mode, option means that you are referring to the pins by the "Broadcom SOC channel" number, these are the numbers after "GPIO" in the green rectangles around the outside of the below diagrams. 
+The 'BMC' pin-mode, option means that you are referring to the pins by the "Broadcom SOC channel" number, these are the numbers after "GPIO" in the green rectangles around the outside of the below diagrams. s
 
 <img src="{{ "/images/pi_gpio/zero-pins.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
@@ -138,9 +138,9 @@ def destroy():
 
 This is an important part to Raspberry Pi programming, unless you code for situations with cleanup, any ports which are in use at the time of an error or Keyboard Interrupt will stay set exactly as they were, even after the program exits. You can imagine the obvious caos and confusion when you restart your script again.
 
-Lastly, we can start our program by setting __name__ equal to '__main__' and calling the functions we defined above. Below 'if __name__ == '__main__', we'll call our setup function. Next we'll try to run the loop function. This function will run until there is a KeyboardInterrupt (Ctrl + C) or the program is killed. When its killed, we'll call our detroy function, turning the LED off and closing the connections. 
+Lastly, we can start our program by setting __name__ equal to '__main__' and calling the functions we defined above. Below 'if __name__ == '__main__', we'll call our setup function. Next we'll try to run the loop function. This function will run until there is a KeyboardInterrupt (Ctrl + C) or the program is killed. When its killed, we'll call our destroy function, turning the LED off and closing the connections. 
 
-In total here is our full code:
+In total, here is our full code:
 
 ```python
 import RPi.GPIO as GPIO
