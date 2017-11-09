@@ -106,10 +106,7 @@ GPIO.RPI_REVISION
 
 <img src="{{ "/images/hello_pi/checkgpio.jpg" | prepend: site.baseurl }}{{ img }}" alt="">
 
-
-
-Well also need MQTT. MQTT is a internet protocol that allows connected devices to speak to eachother. Well cover this later as well. For now we'll install it with
-
+GPIO is a library that allows us to interact directly with the pins of our board. The GPIO library is relatively straitforward to use. 
 ```
 pip install paho-mqtt
 ```
