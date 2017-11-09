@@ -147,7 +147,7 @@ In total, here is our full code:
 import RPi.GPIO as GPIO
 import time
 
-LedPin = 11    # pin23 (pin 16 on BOARD)
+LedPin = 11    # pin 11
 
 def setup():
   GPIO.setmode(GPIO.BOARD)       
