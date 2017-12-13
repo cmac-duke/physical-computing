@@ -10,5 +10,5 @@ Read Critique Prototype Repeat!
 
 Additionally, the course requirements include:
 * Weekly Tutorials and Homework
-* Midterm Collaborative Circuit Design Project
+* Midterm Pub/Sub Prototype Project
 * Final Exhibition
