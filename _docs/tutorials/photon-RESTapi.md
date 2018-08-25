@@ -346,3 +346,13 @@ function toggleLED(toggle) {
     $.post( requestURL, { params: toggle, access_token: accessToken });
 }
 ```
+
+#### HTML5 Color Picker
+
+In HTML5, setting up a color picker is easy:
+```
+<input type="color">
+```
+
+You can use the `onchange` handler to trigger a javascript function when a  
+<input type="color" value="#000000" onchange="sendRGB(this.value);">
